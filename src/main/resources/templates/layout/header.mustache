@@ -5,5 +5,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/blog.css">
 </head>
 <body>
+    <h1 style="text-align:center">블로그</h1>
+    <div class="col-md-12">
+        <!-- 로그인 기능 영역-->
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6" id="login">
+                <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+                {{#userName}}
+                    Logged in as: <span id="user">{{userName}}</span>
+                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                {{/userName}}
+                {{^userName}}
+                    <a href="/oauth2/authorization/google"
+                       class="btn btn-success active" role="button">Google Login</a>
+                    <a href="/oauth2/authorization/naver"
+                       class="btn btn-secondary active" role="button">Naver Login</a>
+                {{/userName}}
+            </div>
+        </div>
+        <br>
+        <ul class="nav col-md-12">
+            <li class="col-md-1">html</li>
+            <li class="col-md-1">css</li>
+            <li class="col-md-1">javascript</li>
+            <li class="col-md-1">java</li>
+            <li class="col-md-1">spring</li>
+            <li class="col-md-1">데이터베이스</li>
+            <li class="col-md-1">운영체제</li>
+            <li class="col-md-1">네트워크</li>
+        </ul>
