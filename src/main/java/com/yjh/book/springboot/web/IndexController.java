@@ -34,7 +34,16 @@ public class IndexController {
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
-        return classification;
+        return "classification";
+    }
+
+    @GetMapping("/posts/{id}")
+    public String post(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
+        model.addAttribute("post", postsService.findById(id));
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+        return "post";
     }
 
     @GetMapping("/posts/save")
