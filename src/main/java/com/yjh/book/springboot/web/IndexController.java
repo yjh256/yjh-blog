@@ -39,7 +39,8 @@ public class IndexController {
 
     @GetMapping("/posts/{id}")
     public String post(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
-        model.addAttribute("post", postsService.findById(id));
+        PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("post",dto);
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
