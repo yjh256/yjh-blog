@@ -33,7 +33,7 @@ public class PostsRepositoryTest {
         postsRepository.save(Posts.builder()
         .title(title)
         .content(content)
-        .author("yoonjihwan@naver.com")
+        .classification("html")
         .build());
 
         //when
@@ -52,7 +52,7 @@ public class PostsRepositoryTest {
         postsRepository.save(Posts.builder()
         .title("title")
         .content("content")
-        .author("author")
+        .classification("html")
         .build());
 
         //when

@@ -28,7 +28,7 @@ public class PostsService {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = "+id));
 
-        posts.update(requestDto.getTitle(), requestDto.getContent());
+        posts.update(requestDto.getTitle(), requestDto.getContent(), requestDto.getClassification());
         return id;
 
     }
@@ -42,6 +42,13 @@ public class PostsService {
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<PostsListResponseDto> findByClassification(String classification) {
+        return postsRepository.findByClassification(classification).stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }

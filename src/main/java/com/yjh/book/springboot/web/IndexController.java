@@ -25,6 +25,15 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/{classification}")
+    public String classification(Model model, @LoginUser SessionUser user, @PathVariable String classification) {
+        model.addAttribute("posts", postsService.findByClassification(classification));
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+        return classification;
+    }
+
     @GetMapping("/posts/save")
     public String postsSave() {
         return "posts-save";
