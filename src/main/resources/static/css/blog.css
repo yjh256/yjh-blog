@@ -2,15 +2,15 @@
     margin:100px;
     text-align:center;
 }
-a:link {
+.classification:link {
     text-decoration:none;
     color:white;
 }
-a:visited {
+.classification:visited {
     text-decoration:none;
     color:white;
 }
-a:hover {
+.classification:hover {
     text-decoration:underline;
     color:white;
 }
