@@ -34,7 +34,7 @@ var main = {
     update : function() {
         var data = {
             title: $('#title').val(),
-            content: $('#content').val()
+            content: $('#content').val(),
             classification: $('#classification').val()
         };
 
