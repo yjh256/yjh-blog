@@ -15,7 +15,17 @@
             </div>
             <div class="form-group">
                 <label for="classification"> 분류 </label>
-                <input type="text" class="form-control" id="classification" value="{{post.classification}}" readonly>
+                <select name="classification" id="classification">
+                    <option value="">분류를 선택하세요</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="javascript">JAVASCRIPT</option>
+                    <option value="java">JAVA</option>
+                    <option value="springboot">SPRING BOOT</option>
+                    <option value="database">데이터베이스</option>
+                    <option value="network">네트워크</option>
+                    <option value="OS">OS</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="content"> 내용 </label>
