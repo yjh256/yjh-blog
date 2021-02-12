@@ -29,12 +29,12 @@
                 </li>
                 {{#posts.first}}
                     <li class="page-item disabled">
-                        <a class="page-link" href="?page={{previous}}">&lt;</a>
+                        <a class="page-link" href="?page={{posts.number}}">&lt;</a>
                     </li>
                 {{/posts.first}}
                 {{^posts.first}}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{previous}}">&lt;</a>
+                        <a class="page-link" href="?page={{posts.number}}">&lt;</a>
                     </li>
                 {{/posts.first}}
 
