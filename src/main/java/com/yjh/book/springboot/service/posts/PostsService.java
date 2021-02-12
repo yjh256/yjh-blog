@@ -7,8 +7,12 @@ import com.yjh.book.springboot.web.dto.PostsResponseDto;
 import com.yjh.book.springboot.web.dto.PostsSaveRequestDto;
 import com.yjh.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,10 +51,23 @@ public class PostsService {
     }
 
     @Transactional
-    public List<PostsListResponseDto> findByClassification(String classification) {
-        return postsRepository.findByClassification(classification).stream()
-                .map(PostsListResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<Posts> getPostsList(Pageable pageable) {
+
+        return postsRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public Page<Posts> findByClassification(Pageable pageable, String classification) {
+
+        return postsRepository.findByClassification(pageable, classification);
+    }
+
+    @Transactional
+    public Boolean getListCheck(Pageable pageable) {
+        Page<Posts> saved = getPostsList(pageable);
+        Boolean check = saved.hasNext();
+
+        return check;
     }
 
     @Transactional

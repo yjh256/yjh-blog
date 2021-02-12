@@ -17,12 +17,12 @@
 #login {
     text-align:right;
 }
-.nav li {
+.classification {
     list-style:none;
-
     padding-left:0px;
     display: inline-block;
-    padding:20px;
+    padding:20px 10px;
+
 }
 .nav {
     background-color: black;
@@ -42,4 +42,7 @@
 #postContent {
     margin: 30px 10%;
     white-space:pre-wrap;
+}
+.center {
+    justify-content:center;
 }

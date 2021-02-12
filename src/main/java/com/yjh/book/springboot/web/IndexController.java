@@ -2,16 +2,19 @@ package com.yjh.book.springboot.web;
 
 import com.yjh.book.springboot.config.auth.LoginUser;
 import com.yjh.book.springboot.config.auth.dto.SessionUser;
+import com.yjh.book.springboot.domain.posts.Posts;
 import com.yjh.book.springboot.service.posts.PostsService;
 import com.yjh.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import javax.mail.Session;
 
 @RequiredArgsConstructor
 @Controller
@@ -20,8 +23,13 @@ public class IndexController {
     private final PostsService postsService;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user) {
-        model.addAttribute("posts",postsService.findAllDesc());
+    public String index(Model model, @LoginUser SessionUser user, @PageableDefault(size=10, sort="id", direction= Sort.Direction.DESC)
+            Pageable pageable) {
+        Page<Posts> postsList = postsService.getPostsList(pageable);
+        model.addAttribute("posts", postsList);
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next",pageable.next().getPageNumber());
+        model.addAttribute("check",postsService.getListCheck(pageable));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
@@ -29,12 +37,15 @@ public class IndexController {
     }
 
     @GetMapping("/{classification}")
-    public String classification(Model model, @LoginUser SessionUser user, @PathVariable String classification) {
-        model.addAttribute("posts", postsService.findByClassification(classification));
+    public String classification(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification) {
+        model.addAttribute("posts", postsService.findByClassification(pageable, classification));
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next",pageable.next().getPageNumber());
+        model.addAttribute("check",postsService.getListCheck(pageable));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
-        return "classification";
+        return "index";
     }
 
     @GetMapping("/posts/{id}")
