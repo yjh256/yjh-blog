@@ -34,3 +34,11 @@
     margin: 0;
     padding: 0;
 }
+#postTitle {
+    text-align:center;
+    margin:30px;
+    border-bottom:1px solid gray;
+}
+#postContent {
+    margin: 30px 10%;
+}

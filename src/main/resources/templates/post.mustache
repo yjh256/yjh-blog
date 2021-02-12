@@ -1,10 +1,11 @@
 {{>layout/header}}
 
 <div>
-    <h2>{{post.title}}</h2>
-    <p>{{post.content}}</p>
+    <h2 id="postTitle">{{post.title}}</h2>
+    <p id="postContent">{{post.content}}</p>
 </div>
 <a href="/posts/update/{{id}}" role="button" class="btn btn-primary">수정</a>
+<a href="/javascript:history.back()" class="btn btn-secondary">뒤로 가기</a>
 </div>
 
 {{>layout/footer}}
