@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,22 +53,35 @@ public class PostsService {
 
     @Transactional
     public Page<Posts> getPostsList(Pageable pageable) {
-
         return postsRepository.findAll(pageable);
     }
 
     @Transactional
     public Page<Posts> findByClassification(Pageable pageable, String classification) {
-
         return postsRepository.findByClassification(pageable, classification);
     }
 
     @Transactional
-    public Boolean getListCheck(Pageable pageable) {
-        Page<Posts> saved = getPostsList(pageable);
-        Boolean check = saved.hasNext();
+    public int getPageStart(Pageable pageable) {
+        Page<Posts> posts = getPostsList(pageable);
+        return (int)(posts.getNumber() / 10) * 10 + 1;
+    }
 
-        return check;
+    @Transactional
+    public int getPageLast(Pageable pageable, int start) {
+        Page<Posts> posts = getPostsList(pageable);
+        return start + 9 < posts.getTotalPages() ? start + 9 : posts.getTotalPages();
+    }
+
+    @Transactional
+    public int[] getPageSequence(int start, int last) {
+        int[] list = new int[last-start+1];
+        int j = 0;
+        for (int i = start; i <= last; i++) {
+            list[j] = i;
+            j++;
+        }
+        return list;
     }
 
     @Transactional

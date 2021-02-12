@@ -25,11 +25,14 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user, @PageableDefault(size=10, sort="id", direction= Sort.Direction.DESC)
             Pageable pageable) {
-        Page<Posts> postsList = postsService.getPostsList(pageable);
-        model.addAttribute("posts", postsList);
+        int start = postsService.getPageStart(pageable);
+        int last = postsService.getPageLast(pageable, start);
+        model.addAttribute("posts", postsService.getPostsList(pageable));
+        model.addAttribute("start", start);
+        model.addAttribute("last", last);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next",pageable.next().getPageNumber());
-        model.addAttribute("check",postsService.getListCheck(pageable));
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("numbers", postsService.getPageSequence(start, last));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
@@ -38,10 +41,14 @@ public class IndexController {
 
     @GetMapping("/{classification}")
     public String classification(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification) {
+        int start = postsService.getPageStart(pageable);
+        int last = postsService.getPageLast(pageable, start);
         model.addAttribute("posts", postsService.findByClassification(pageable, classification));
+        model.addAttribute("start", start);
+        model.addAttribute("last", last);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next",pageable.next().getPageNumber());
-        model.addAttribute("check",postsService.getListCheck(pageable));
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("numbers", postsService.getPageSequence(start, last));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
