@@ -36,9 +36,10 @@
 }
 #postTitle {
     text-align:center;
-    margin:30px;
+    padding:30px;
     border-bottom:1px solid gray;
 }
 #postContent {
     margin: 30px 10%;
+    white-space:pre-wrap;
 }
