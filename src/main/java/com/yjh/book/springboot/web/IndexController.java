@@ -28,8 +28,6 @@ public class IndexController {
         int start = postsService.getPageStart(pageable);
         int last = postsService.getPageLast(pageable, start);
         model.addAttribute("posts", postsService.getPostsList(pageable));
-        model.addAttribute("start", start);
-        model.addAttribute("last", last);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("numbers", postsService.getPageSequence(start, last));
@@ -44,8 +42,6 @@ public class IndexController {
         int start = postsService.getPageStart(pageable);
         int last = postsService.getPageLast(pageable, start);
         model.addAttribute("posts", postsService.findByClassification(pageable, classification));
-        model.addAttribute("start", start);
-        model.addAttribute("last", last);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber()+1);
         model.addAttribute("numbers", postsService.getPageSequence(start, last));
