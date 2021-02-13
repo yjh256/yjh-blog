@@ -53,7 +53,7 @@ public class PostsService {
     }
 
     @Transactional
-    public Page<Posts> getPostsList(Pageable pageable) {
+    public Page<Posts> findAll(Pageable pageable) {
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
         pageable = PageRequest.of(page, 10, new Sort(Sort.Direction.DESC, "id"));
         return postsRepository.findAll(pageable);
@@ -67,14 +67,18 @@ public class PostsService {
     }
 
     @Transactional
-    public int getPageStart(Pageable pageable) {
-        Page<Posts> posts = getPostsList(pageable);
+    public int getPageStart(String classification, Pageable pageable) {
+        Page<Posts> posts;
+        if (classification == "") posts = findAll(pageable);
+        else posts = findByClassification(pageable, classification);
         return (int)(posts.getNumber() / 10) * 10 + 1;
     }
 
     @Transactional
-    public int getPageLast(Pageable pageable, int start) {
-        Page<Posts> posts = getPostsList(pageable);
+    public int getPageLast(String classification, Pageable pageable, int start) {
+        Page<Posts> posts;
+        if (classification == "") posts = findAll(pageable);
+        else posts = findByClassification(pageable, classification);
         return start + 9 < posts.getTotalPages() ? start + 9 : posts.getTotalPages();
     }
 

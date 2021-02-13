@@ -25,9 +25,9 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user, @PageableDefault(size=10, sort="id", direction= Sort.Direction.DESC)
             Pageable pageable) {
-        int start = postsService.getPageStart(pageable);
-        int last = postsService.getPageLast(pageable, start);
-        model.addAttribute("posts", postsService.getPostsList(pageable));
+        int start = postsService.getPageStart("", pageable);
+        int last = postsService.getPageLast("", pageable, start);
+        model.addAttribute("posts", postsService.findAll(pageable));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("numbers", postsService.getPageSequence(start, last));
@@ -39,8 +39,8 @@ public class IndexController {
 
     @GetMapping("/{classification}")
     public String classification(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification) {
-        int start = postsService.getPageStart(pageable);
-        int last = postsService.getPageLast(pageable, start);
+        int start = postsService.getPageStart(classification, pageable);
+        int last = postsService.getPageLast(classification, pageable, start);
         model.addAttribute("posts", postsService.findByClassification(pageable, classification));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber()+1);
