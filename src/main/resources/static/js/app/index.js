@@ -71,3 +71,12 @@ var main = {
 };
 
 main.init();
+
+var page_num = document.location.href.split("?page=")
+var page_numbers = document.querySelectorAll(".page-numbers");
+for (var i = 0; i < page_numbers.length; i++) {
+    var number = page_numbers.item(i);
+    if (number == page_num) {
+        number.classList.add("active");
+    }
+}
