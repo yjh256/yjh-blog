@@ -76,7 +76,7 @@ var page_num = document.location.href.split("?page=")
 var page_numbers = document.querySelectorAll(".page-numbers");
 for (var i = 0; i < page_numbers.length; i++) {
     var number = page_numbers.item(i);
-    if (number == page_num) {
+    if (number.innerText == page_num[1]) {
         number.classList.add("active");
     }
 }
