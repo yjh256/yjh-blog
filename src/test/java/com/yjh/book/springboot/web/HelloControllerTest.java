@@ -47,10 +47,10 @@ public class HelloControllerTest {
 
         mvc.perform(
                 get("/hello/dto")
-                .param("name", name)
+                .param("name", name) // API 테스트 시 사용될 request parameter를 설정한다. 값은 String만 허용된다.
                 .param("amount", String.valueOf(amount)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name",is(name)))
+                .andExpect(jsonPath("$.name",is(name))) // jsonPath는 JSON 응답값을 field별로 검증할 수 있는 method로 $를 기준으로 field name을 명시한다.
                 .andExpect(jsonPath("$.amount",is(amount)));
 
     }

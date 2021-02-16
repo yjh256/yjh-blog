@@ -13,7 +13,7 @@ public class HelloController {
     }
 
     @GetMapping("/hello/dto")
-    public HelloResponseDto helloDto(@RequestParam("name") String
+    public HelloResponseDto helloDto(@RequestParam("name") String // 외부에서 API로 넘긴 parameter를 가져오는 annotation이다.
                                                  name,
                                      @RequestParam("amount") int
                                              amount) {
