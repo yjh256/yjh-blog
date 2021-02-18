@@ -67,23 +67,12 @@ public class PostsService {
     }
 
     @Transactional
-    public int getPageStart(String classification, Pageable pageable) {
+    public int[] getPageSequence(String classification, Pageable pageable) {
         Page<Posts> posts;
         if (classification == "") posts = findAll(pageable);
         else posts = findByClassification(pageable, classification);
-        return (int)(posts.getNumber() / 10) * 10 + 1;
-    }
-
-    @Transactional
-    public int getPageLast(String classification, Pageable pageable, int start) {
-        Page<Posts> posts;
-        if (classification == "") posts = findAll(pageable);
-        else posts = findByClassification(pageable, classification);
-        return start + 9 < posts.getTotalPages() ? start + 9 : posts.getTotalPages();
-    }
-
-    @Transactional
-    public int[] getPageSequence(int start, int last) {
+        int start = (int)(posts.getNumber() / 10) * 10 + 1;
+        int last = start + 9 < posts.getTotalPages() ? start + 9 : posts.getTotalPages();
         int[] list = new int[last-start+1];
         int j = 0;
         for (int i = start; i <= last; i++) {
