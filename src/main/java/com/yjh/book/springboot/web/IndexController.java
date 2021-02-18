@@ -37,8 +37,7 @@ public class IndexController {
 
     @GetMapping("/{classification}")
     public String index(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification) {
-        if (classification == "") model.addAttribute("posts", postsService.findAll(pageable));
-        else model.addAttribute("posts", postsService.findByClassification(pageable, classification));
+        model.addAttribute("posts", postsService.findByClassification(pageable, classification));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("numbers", postsService.getPageSequence(classification, pageable));
