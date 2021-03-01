@@ -25,6 +25,7 @@ public class OAuthAttributes {
         this.picture = picture;
     }
 
+    // OAuth2User에서 반환하는 사용자 정보는 Map이기 때문에 값 하나하나를 변환해야만 한다.
     public static OAuthAttributes of(String registrationId, String userNameAttributeName,
                                      Map<String, Object> attributes) {
         if("naver".equals(registrationId)) {
@@ -55,6 +56,8 @@ public class OAuthAttributes {
                 .build();
     }
 
+    // User 엔티티를 생성한다. OAuthAtributes에서 엔티티를 생성하는 시점은 처음 가입할 때이다.
+    // 가입할 때의 기본 권한을 GUEST로 주기 위해서 role builder 값에는 Role.GUEST를 사용한다.
     public User toEntity() {
         return User.builder()
                 .name(name)

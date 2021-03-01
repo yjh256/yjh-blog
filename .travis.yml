@@ -16,34 +16,40 @@ cache:
 
 script: "./gradlew clean build"
 
+# deploy 명령어가 실행되기 전에 수행
+# CodeDeploy는 Jar 파일을 인식하지 못하므로 Jar + 기타 설정 파일들을 모아 압축(zip)
+# 프로젝트 내 파일 중 실제로 필요한 파일은 Jar, appspec.yml, 배포를 위한 스크립트이다.
 before_deploy:
-  - mkdir -p before-deploy
+  - mkdir -p before-deploy # 디렉토리를 Travis CI가 실행 중인 위치에서 생성
   - cp scripts/*.sh before-deploy/
   - cp appspec.yml before-deploy/
   - cp build/libs/*.jar before-deploy/
-  - cd before-deploy && zip -r before-deploy *
+  - cd before-deploy && zip -r before-deploy * # 현재 위치의 모든 파일을 압축
   - cd ../ && mkdir -p deploy
-  - mv before-deploy/before-deploy.zip deploy/springboot-web.zip
+  - mv before-deploy/before-deploy.zip deploy/springboot-web.zip # 파일 이동
 
+# S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비스와 연동될 행위들을 선언
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
-    bucket: springboot-web-yjh-build
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+    bucket: springboot-web-yjh-build # S3 버킷
     region: ap-northeast-2
     skip_cleanup: true
-    acl: private
-    local_dir: deploy
+    acl: private # zip 파일 접근을 private으로
+    # 앞에서 생성한 deploy 디렉토리를 지정
+    # 해당 위치의 파일들만 S3로 전송
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
 
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: springboot-web-yjh-build
-    key: springboot-web.zip
-    bundle-type: zip
-    application: springboot-web
-    deployment-group: springboot-web-group
+    key: springboot-web.zip # 빌드 파일을 압축해서 전달
+    bundle-type: zip # 압축 확장자
+    application: springboot-web # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
+    deployment-group: springboot-web-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
 

@@ -45,10 +45,10 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true) // readOnly = true는 트랙잭션 범위는 유지하되 조회 기능만 남겨두어 조회 속도를 개선한다. 그래서 등록, 수정, 삭제 기능이 전혀 없는 서비스 메소드에서 사용한다.
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
-                .map(PostsListResponseDto::new)
+                .map(PostsListResponseDto::new) // posts -> new PostsListResponseDto(posts)와 같다.
                 .collect(Collectors.toList());
     }
 
@@ -87,6 +87,6 @@ public class PostsService {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
-        postsRepository.delete(posts);
+        postsRepository.delete(posts); // Entity를 파라미터로 삭제할 수도 있고, deleteById 메소드를 이용해 id로 삭제할 수도 있다.
     }
 }
