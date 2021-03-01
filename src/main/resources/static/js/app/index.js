@@ -80,3 +80,9 @@ for (var i = 0; i < page_numbers.length; i++) {
         number.classList.add("active");
     }
 }
+
+var modifiedDates = document.querySelectorAll(".modifiedDate");
+for (var i = 0; i < modifiedDates.length; i++) {
+    str = modifiedDates[i].split("T");
+    modifiedDates[i] = str[0]+" "+str[1];
+}
