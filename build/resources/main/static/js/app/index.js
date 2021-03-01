@@ -80,6 +80,3 @@ for (var i = 0; i < page_numbers.length; i++) {
         number.classList.add("active");
     }
 }
-
-var obj = JSON.parse(posts)
-console.log(obj)

@@ -1,52 +1,110 @@
-#home_title {
-    margin:100px;
-    text-align:center;
+body {
+    overflow: auto;
 }
-#home_title a {
-    text-decoration:none;
-    color:black;
+
+@media screen{
+    #home_title {
+        margin:100px;
+        text-align:center;
+    }
+    #home_title a {
+        text-decoration:none;
+        color:black;
+    }
+    .classification:link {
+        text-decoration:none;
+        color:white;
+    }
+    .classification:visited {
+        text-decoration:none;
+        color:white;
+    }
+    .classification:hover {
+        text-decoration:underline;
+        color:white;
+    }
+    #login {
+        text-align:right;
+    }
+    .header-list {
+        list-style:none;
+        display: block;
+        padding:20px 10px;
+        margin:0 auto;
+        white-space: nowrap;
+        text-align:center;
+    }
+    .nav {
+        background-color: black;
+        color:white;
+        list-style-type: none;
+        display:grid;
+        grid-template-columns: repeat(8, 1fr);
+        align-content:space-evenly;
+        justify-content:space-evenly;
+        place-items: center;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    #postTitle {
+        text-align:center;
+        padding:30px;
+        border-bottom:1px solid gray;
+    }
+    #postContent {
+        margin: 30px 10%;
+        white-space:pre-wrap;
+    }
+    .center {
+        justify-content:center;
+    }
+    .post-col-1, .post-col-2, .post-col-3, .post-col-4 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+    .post-col-1 {
+        width: 50px;
+    }
+    .post-col-2 {
+        width: 55%;
+    }
+    .post-col-3 {
+        width: 20%;
+    }
+    .post-col-4 {
+        width: 20%;
+    }
 }
-.classification:link {
-    text-decoration:none;
-    color:white;
+
+@media screen and (max-width: 900px) {
+    .nav {
+        grid-template-rows: repeat(2, 64px);
+        grid-template-columns: repeat(4, 1fr);
+        align-content:space-evenly;
+        justify-content:space-evenly;
+        place-items: center;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
 }
-.classification:visited {
-    text-decoration:none;
-    color:white;
-}
-.classification:hover {
-    text-decoration:underline;
-    color:white;
-}
-#login {
-    text-align:right;
-}
-.classification {
-    list-style:none;
-    padding-left:0px;
-    display: inline-block;
-    padding:20px 10px;
+
+@media screen and (max-width: 768px) {
 
 }
-.nav {
-    background-color: black;
-    color:white;
-    list-style-type: none;
-    display:flex;
-    justify-content:space-around;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-#postTitle {
-    text-align:center;
-    padding:30px;
-    border-bottom:1px solid gray;
-}
-#postContent {
-    margin: 30px 10%;
-    white-space:pre-wrap;
-}
-.center {
-    justify-content:center;
+
+@media screen and (max-width: 480px) {
+    .nav {
+        grid-template-rows: repeat(8, 64px);
+        grid-template-columns: repeat(1, 1fr);
+        align-content:space-evenly;
+        justify-content:space-evenly;
+        place-items: center;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
 }
