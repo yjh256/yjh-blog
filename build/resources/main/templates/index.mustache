@@ -14,10 +14,10 @@
             <tbody id="tbody">
             {{#posts}}
                 <tr>
-                    <td>{{id}}</td>
-                    <td><a href="/posts/{{id}}">{{title}}</a></td>
-                    <td>{{classification}}</td>
-                    <td class="modifiedDate">{{modifiedDate}}</td>
+                    <td class="post-col-1">{{id}}</td>
+                    <td class="post-col-2"><a href="/posts/{{id}}">{{title}}</a></td>
+                    <td class="post-col-3">{{classification}}</td>
+                    <td class="post-col-4 modifiedDate">{{modifiedDate}}</td>
                 </tr>
             {{/posts}}
             </tbody>

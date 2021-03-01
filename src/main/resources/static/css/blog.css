@@ -107,4 +107,10 @@ body {
         margin: 0;
         padding: 0;
     }
+    .post-col-1, .post-col-2, .post-col-3, .post-col-4 {
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
 }
