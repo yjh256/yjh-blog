@@ -83,6 +83,6 @@ for (var i = 0; i < page_numbers.length; i++) {
 
 var modifiedDates = document.querySelectorAll(".modifiedDate");
 for (var i = 0; i < modifiedDates.length; i++) {
-    str = modifiedDates[i].split("T");
-    modifiedDates[i] = str[0]+" "+str[1];
+    str = modifiedDates.item(i).innerText.split("T");
+    modifiedDates.item(i).innerText = str[0]+" "+str[1];
 }
