@@ -1,9 +1,9 @@
 package com.yjh.book.springboot.web;
 
 import com.yjh.book.springboot.service.posts.PostsService;
-import com.yjh.book.springboot.web.dto.PostsResponseDto;
-import com.yjh.book.springboot.web.dto.PostsSaveRequestDto;
-import com.yjh.book.springboot.web.dto.PostsUpdateRequestDto;
+import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
+import com.yjh.book.springboot.web.dto.posts.PostsSaveRequestDto;
+import com.yjh.book.springboot.web.dto.posts.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

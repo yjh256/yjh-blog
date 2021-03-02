@@ -3,8 +3,8 @@ package com.yjh.book.springboot.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yjh.book.springboot.domain.posts.Posts;
 import com.yjh.book.springboot.domain.posts.PostsRepository;
-import com.yjh.book.springboot.web.dto.PostsSaveRequestDto;
-import com.yjh.book.springboot.web.dto.PostsUpdateRequestDto;
+import com.yjh.book.springboot.web.dto.posts.PostsSaveRequestDto;
+import com.yjh.book.springboot.web.dto.posts.PostsUpdateRequestDto;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,6 @@ import org.springframework.http.*;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 

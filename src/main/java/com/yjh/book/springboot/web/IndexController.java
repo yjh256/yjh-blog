@@ -2,14 +2,10 @@ package com.yjh.book.springboot.web;
 
 import com.yjh.book.springboot.config.auth.LoginUser;
 import com.yjh.book.springboot.config.auth.dto.SessionUser;
-import com.yjh.book.springboot.domain.posts.Posts;
 import com.yjh.book.springboot.service.posts.PostsService;
-import com.yjh.book.springboot.web.dto.PostsResponseDto;
+import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
