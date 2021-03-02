@@ -2,10 +2,10 @@ package com.yjh.book.springboot.service.posts;
 
 import com.yjh.book.springboot.domain.posts.Posts;
 import com.yjh.book.springboot.domain.posts.PostsRepository;
-import com.yjh.book.springboot.web.dto.PostsListResponseDto;
-import com.yjh.book.springboot.web.dto.PostsResponseDto;
-import com.yjh.book.springboot.web.dto.PostsSaveRequestDto;
-import com.yjh.book.springboot.web.dto.PostsUpdateRequestDto;
+import com.yjh.book.springboot.web.dto.posts.PostsListResponseDto;
+import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
+import com.yjh.book.springboot.web.dto.posts.PostsSaveRequestDto;
+import com.yjh.book.springboot.web.dto.posts.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
