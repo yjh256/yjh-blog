@@ -172,7 +172,6 @@ public class CommentsApiControllerTest {
 
         HttpEntity<CommentsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
-        System.out.println(new ObjectMapper().writeValueAsString(requestDto));
         //when
         // 생성된 MockMvc를 통해 API를 테스트한다. 본문 영역은 문자열로 표현하기 위해 ObjectMapper를 통해 문자열 JSON으로 변환한다.
         mvc.perform(put(url)
