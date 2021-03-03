@@ -2,6 +2,7 @@ package com.yjh.book.springboot.web;
 
 import com.yjh.book.springboot.config.auth.LoginUser;
 import com.yjh.book.springboot.config.auth.dto.SessionUser;
+import com.yjh.book.springboot.domain.user.User;
 import com.yjh.book.springboot.service.comments.CommentsService;
 import com.yjh.book.springboot.service.posts.PostsService;
 import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
@@ -50,7 +51,7 @@ public class IndexController {
         model.addAttribute("post",dto);
         model.addAttribute("comments", commentsService.listsComments(id));
         if (user != null) {
-            model.addAttribute("user", user);
+            model.addAttribute("userId", user.getId());
             model.addAttribute("userName", user.getName());
         }
         return "post";
