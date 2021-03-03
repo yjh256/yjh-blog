@@ -20,7 +20,6 @@ var main = {
         };
 
         var post_id = $('#post_id').val();
-        console.log(data);
 
         $.ajax({
             type: 'POST',
@@ -30,21 +29,21 @@ var main = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('댓글이 등록되었습니다.');
-            window.location.href = '/post/'+id;
+            window.location.href = '/posts/'+id;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
     },
     update : function() {
         var data = {
-            content: $('#commentContent').val(),
-            created_by: $('#commentAuthor').val(),
+            content: $('#content').val(),
+            created_by: $('#author').val(),
             post_id: $('#post_id').val(),
             user_id: $('#user_id').val()
         };
 
         var post_id = $('#post_id').val();
-        var comment_id = $('#comment_id').val()
+        var comment_id = $('#comment_id').val();
 
         $.ajax({
             type: 'PUT',
@@ -54,7 +53,7 @@ var main = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('댓글이 수정되었습니다.');
-            window.location.href = '/post/'+post_id;
+            window.location.href = '/posts/'+post_id;
         }).fail(function() {
             alert(JSON.stringify(error));
         });
@@ -65,12 +64,12 @@ var main = {
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/comments/'+id,
+            url: '/api/v1/comments/'+comment_id,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
             alert('댓글이 삭제되었습니다.');
-            window.location.href = '/post/'+post_id;
+            window.location.href = '/posts/'+post_id;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });

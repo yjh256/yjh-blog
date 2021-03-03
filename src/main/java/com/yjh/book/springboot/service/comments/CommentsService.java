@@ -9,14 +9,11 @@ import com.yjh.book.springboot.domain.user.UserRepository;
 import com.yjh.book.springboot.web.dto.comments.CommentsListResponseDto;
 import com.yjh.book.springboot.web.dto.comments.CommentsSaveRequestDto;
 import com.yjh.book.springboot.web.dto.comments.CommentsUpdateRequestDto;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,7 +41,7 @@ public class CommentsService {
     // 댓글 리스트
     @Transactional(readOnly = true)
     public List<CommentsListResponseDto> listsComments(long postNo) {
-        return this.commentsRepository.getCommentsOfPost(postNo).stream()
+        return commentsRepository.getCommentsOfPost(postNo).stream()
                 .map(CommentsListResponseDto::new)
                 .collect(Collectors.toList());
     }
