@@ -5,13 +5,12 @@ import com.yjh.book.springboot.domain.posts.Posts;
 import com.yjh.book.springboot.domain.user.User;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "COMMENTS")
 @Getter
-@ToString(exclude = "posts")
 @NoArgsConstructor
 public class Comments extends BaseTimeEntity {
 
