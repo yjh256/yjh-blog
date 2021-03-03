@@ -2,6 +2,7 @@ package com.yjh.book.springboot.web;
 
 import com.yjh.book.springboot.config.auth.LoginUser;
 import com.yjh.book.springboot.config.auth.dto.SessionUser;
+import com.yjh.book.springboot.service.comments.CommentsService;
 import com.yjh.book.springboot.service.posts.PostsService;
 import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class IndexController {
 
     private final PostsService postsService;
+    private final CommentsService commentsService;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable) { // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
@@ -46,6 +48,7 @@ public class IndexController {
     public String post(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post",dto);
+        model.addAttribute("comments", commentsService.listsComments(id));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
