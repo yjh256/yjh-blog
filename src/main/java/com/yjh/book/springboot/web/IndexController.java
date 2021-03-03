@@ -51,7 +51,6 @@ public class IndexController {
         model.addAttribute("post",dto);
         model.addAttribute("comments", commentsService.listsComments(id));
         if (user != null) {
-            model.addAttribute("userId", user.getId());
             model.addAttribute("userName", user.getName());
         }
         return "post";
