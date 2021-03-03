@@ -65,7 +65,7 @@ public class CommentsRepositoryTest {
         commentsRepository.save(Comments.builder()
                 .content(commentsContent)
                 .created_by("생성일자")
-                .posts(posts)
+                .post(posts)
                 .user(user)
                 .build());
 

@@ -28,8 +28,8 @@ public class Comments extends BaseTimeEntity {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "posts_id")
-    private Posts posts;
+    @JoinColumn(name = "post_id")
+    private Posts post;
 
     @JsonIgnore
     @ManyToOne
@@ -37,18 +37,18 @@ public class Comments extends BaseTimeEntity {
     private User user;
 
     @Builder
-    public Comments(String content, String created_by, Posts posts, User user) {
+    public Comments(String content, String created_by, Posts post, User user) {
         this.content = content;
         this.created_by = created_by;
-        this.posts = posts;
+        this.post = post;
         this.user = user;
     }
 
     public void changeAuthor(User author) {
         this.user = author;
     }
-    public void changePost(Posts posts) {
-        this.posts = posts;
+    public void changePost(Posts post) {
+        this.post = post;
     }
     public void update(String content) {
         this.content = content;
