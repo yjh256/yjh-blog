@@ -20,7 +20,7 @@ var main = {
         };
 
         var post_id = $('#post_id').val();
-        console.log(JSON.stringfy(data));
+        console.log(data);
 
         $.ajax({
             type: 'POST',
