@@ -3,6 +3,7 @@ package com.yjh.book.springboot.web;
 import com.yjh.book.springboot.config.auth.LoginUser;
 import com.yjh.book.springboot.config.auth.dto.SessionUser;
 import com.yjh.book.springboot.domain.user.User;
+import com.yjh.book.springboot.domain.user.UserRepository;
 import com.yjh.book.springboot.service.comments.CommentsService;
 import com.yjh.book.springboot.service.posts.PostsService;
 import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class IndexController {
 
+    private final UserRepository userRepository;
     private final PostsService postsService;
     private final CommentsService commentsService;
 
@@ -51,6 +53,8 @@ public class IndexController {
         model.addAttribute("post",dto);
         model.addAttribute("comments", commentsService.listsComments(id));
         if (user != null) {
+            User user2 = userRepository.findByEmail(user.getEmail()).get();
+            model.addAttribute("userId", user2.getId());
             model.addAttribute("userName", user.getName());
         }
         return "post";
