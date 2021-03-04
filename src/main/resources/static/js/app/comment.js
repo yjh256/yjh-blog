@@ -85,4 +85,11 @@ var main = {
 
 main.init();
 
-
+var only-for-author = document.querySelectorAll(".only-for-author");
+var author = document.querySelector("#author");
+for (var i = 0; i < only-for-author.length; i++) {
+    var created_by = document.querySelector(".commentsAuthor");
+    if (created_by.item(i).value == author) {
+        only-for-author.item(i).hidden = false;
+    }
+}
