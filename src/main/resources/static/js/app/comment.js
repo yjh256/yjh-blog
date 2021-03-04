@@ -91,8 +91,8 @@ for (var i = 0; i < comments.length; i++) {
 
 function show_update_form(elem) {
     if ($(elem).next().prop("hidden")) {
-        $(button).next().prop("hidden", false);
+        $(elem).next().prop("hidden", false);
     } else {
-        $(button).next().prop("hidden", true);
+        $(elem).next().prop("hidden", true);
     }
 }
