@@ -4,6 +4,13 @@ var main = {
         $('#btn-comment-save').on('click', function() {
             _this.save();
         });
+        var updateButtons = document.querySelectorAll('.btn-comment-update');
+        updateButtons.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var form = this.closest('form');
+                _this.update(form);
+            });
+        });
         $('#btn-comment-update').on('click', function() {
             _this.update();
         });
@@ -34,10 +41,10 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
-    update : function() {
+    update : function(form) {
         var data = {
-            content: $('#content').val(),
-            created_by: $('#author').val(),
+            content: form.querySelector('#comment-content').val(),
+            created_by: $('#comment-author').val(),
             post_id: $('#post_id').val(),
             user_id: $('#user_id').val()
         };
@@ -78,21 +85,4 @@ var main = {
 
 main.init();
 
-var curr_author = $('#author').val();
-var comments = document.querySelectorAll(".comments")
-var commentsAuthor = document.querySelectorAll(".commentsAuthor")
-for (var i = 0; i < comments.length; i++) {
-    var comment_author = commentsAuthor.item(i).innerText;
-    if (comment_author == curr_author) {
-        var modifying_elements = comments.item(i).children[2];
-        modifying_elements.hidden = false;
-    }
-}
 
-function show_update_form(elem) {
-    if ($(elem).next().prop("hidden")) {
-        $(elem).next().prop("hidden", false);
-    } else {
-        $(elem).next().prop("hidden", true);
-    }
-}
