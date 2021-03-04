@@ -90,9 +90,9 @@ for (var i = 0; i < comments.length; i++) {
 }
 
 var update_form = document.querySelectorAll(".comments-update");
-var comment_update_button = document.querySelectorAll(".comments-update-button");
+var comments_update_button = document.querySelectorAll(".comments-update-button");
 for (var i = 0; i < update_form.length; i++) {
-    comment_update_button.item(i).onclick = function() {
+    comments_update_button.item(i).onclick = function() {
         if (update_form.item(i).hidden) {
             update_form.item(i).hidden = false;
         }
