@@ -84,7 +84,7 @@ var commentsAuthor = document.querySelectorAll(".commentsAuthor")
 for (var i = 0; i < comments.length; i++) {
     var comment_author = commentsAuthor.item(i).innerText;
     if (comment_author == curr_author) {
-        var modifying_elements = comments.children[2];
+        var modifying_elements = comments.item(i).children[2];
         modifying_elements.hidden = false;
     }
 }
