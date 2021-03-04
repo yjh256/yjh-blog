@@ -43,7 +43,7 @@ var main = {
     },
     update : function(form) {
         var data = {
-            content: form.querySelector('#comment-content').val(),
+            content: form.querySelector('#comment-content').value,
             created_by: $('#comment-author').val(),
             post_id: $('#post_id').val(),
             user_id: $('#user_id').val()
