@@ -12,7 +12,7 @@
         <input type="text" class="form-control" id="user_id" value="{{userId}}" hidden>
     </div>
     <div class="form-group">
-        <label for="commentAuthor">작성자</label>
+        <label for="author">작성자</label>
         <input type="text" class="form-control" id="author" value="{{userName}}" readonly>
     </div>
     <div class="form-group">
@@ -22,12 +22,32 @@
 </form>
 <button type="button" class="btn btn-primary" id="btn-comment-save">등록</button>
 {{#comments}}
-    <div>
-        <h4 id="commentsAuthor">{{created_by}}</h4>
-        <p id="commentsContent">{{content}}</p>
-        <a href="/posts/update/{{id}}" role="button" class="btn btn-primary">수정</a>
-        <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
-        <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
+    <div class="comments">
+        <h4 class="commentsAuthor">{{created_by}}</h4>
+        <p class="commentsContent">{{content}}</p>
+        <div class="only-for-author" hidden>
+            <button type="button" class="btn btn-primary">수정</button>
+            <div class="comments-update" hidden>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="post_id" value="{{post.id}}" hidden>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="user_id" value="{{userId}}" hidden>
+                    </div>
+                    <div class="form-group">
+                        <label for="author">작성자</label>
+                        <input type="text" class="form-control" id="author" value="{{userName}}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">내용</label>
+                        <textarea class="form-control" id="content">{{content}}</textarea>
+                    </div>
+                </form>
+                <button type="button" class="btn btn-primary" id="btn-comment-update">수정 완료</button>
+            </div>
+            <button type="button" class="btn btn-danger" id="btn-comment-delete">삭제</button>
+        </div>
     </div>
 {{/comments}}
 <div>

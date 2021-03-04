@@ -77,3 +77,26 @@ var main = {
 };
 
 main.init();
+
+var curr_author = $('#author').val();
+var comments = document.querySelectorAll(".comments")
+var commentsAuthor = document.querySelectorAll(".commentsAuthor")
+for (var i = 0; i < comments.length; i++) {
+    var comment_author = commentsAuthor.item(i).innerText;
+    if (comment_author == curr_author) {
+        var modifying_elements = comments.children[2];
+        modifying_elements.hidden = false;
+    }
+}
+
+var update_form = document.querySelectorAll(".comments-update");
+for (var i = 0; i < update_form.length; i++) {
+    update_form.item(i).onclick = function() {
+        if (update_form.item(i).hidden) {
+            update_form.item(i).hidden = false;
+        }
+        else {
+            update_form.item(i).hidden = true;
+        }
+    }
+}
