@@ -90,14 +90,10 @@ for (var i = 0; i < comments.length; i++) {
 }
 
 var update_form = document.querySelectorAll(".comments-update");
-var comments_update_button = document.querySelectorAll(".comments-update-button");
-for (var i = 0; i < update_form.length; i++) {
-    comments_update_button.item(i).onclick = function() {
-        if (update_form.item(i).hidden) {
-            update_form.item(i).hidden = false;
-        }
-        else {
-            update_form.item(i).hidden = true;
-        }
+function show_update_form(elem) {
+    if ($(elem).nextElementSibling.hidden) {
+        $(button).next().prop("hidden", false);
+    } else {
+        $(button).next().prop("hidden", true);
     }
 }
