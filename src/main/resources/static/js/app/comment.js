@@ -88,7 +88,7 @@ main.init();
 var only_for_author = document.querySelectorAll(".only-for-author");
 var author = document.querySelector("#author").value;
 for (var i = 0; i < only_for_author.length; i++) {
-    var created_by = document.querySelector(".commentsAuthor");
+    var created_by = document.querySelectorAll(".commentsAuthor");
     if (created_by.item(i).value == author) {
         only_for_author.item(i).hidden = false;
     }
