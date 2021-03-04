@@ -29,7 +29,7 @@ var main = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('댓글이 등록되었습니다.');
-            window.location.href = '/posts/'+id;
+            window.location.href = '/posts/'+post_id;
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
@@ -89,9 +89,8 @@ for (var i = 0; i < comments.length; i++) {
     }
 }
 
-var update_form = document.querySelectorAll(".comments-update");
 function show_update_form(elem) {
-    if ($(elem).nextElementSibling.hidden) {
+    if ($(elem).next().prop("hidden")) {
         $(button).next().prop("hidden", false);
     } else {
         $(button).next().prop("hidden", true);
