@@ -15,12 +15,15 @@
     margin:1rem;
 }
 
+.comments-header {
+    display:flex;
+}
+
 .commentsAuthor {
     display:inline;
 }
 
 .comments-modifiedDate {
-    display: inline-block;
+    flex-grow: 1;
     text-align:right;
-    width: 80%;
 }
