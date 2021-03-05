@@ -86,7 +86,7 @@ var main = {
 main.init();
 
 var only_for_author = document.querySelectorAll(".only-for-author");
-var author = document.querySelector("#author").value;
+var author = document.querySelector("#save-comment-author").value;
 for (var i = 0; i < only_for_author.length; i++) {
     var created_by = document.querySelectorAll(".commentsAuthor");
     if (created_by.item(i).textContent == author) {
