@@ -93,3 +93,9 @@ for (var i = 0; i < only_for_author.length; i++) {
         only_for_author.item(i).hidden = false;
     }
 }
+
+var modifiedDates = document.querySelectorAll(".comments-modifiedDate");
+for (var i = 0; i < modifiedDates.length; i++) {
+    str = modifiedDates.item(i).innerText.split("T");
+    modifiedDates.item(i).innerText = str[0]+" "+str[1];
+}

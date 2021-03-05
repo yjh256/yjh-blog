@@ -8,6 +8,7 @@
 #comment-save-area {
     display:grid;
     grid-template-columns: 1fr 80px;
+    margin-bottom: 2rem;
 }
 
 .comments {
@@ -16,4 +17,8 @@
 
 .commentsAuthor {
     display:inline;
+}
+
+.comments-modifiedDate {
+    text-align:right;
 }
