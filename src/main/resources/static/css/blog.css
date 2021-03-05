@@ -77,6 +77,9 @@ body {
     .post-col-4 {
         width: 20%;
     }
+    .post-update-and-back {
+        text-align:right;
+    }
 }
 
 @media screen and (max-width: 900px) {

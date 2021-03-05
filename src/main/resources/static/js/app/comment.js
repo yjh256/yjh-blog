@@ -20,8 +20,8 @@ var main = {
     },
     save : function() {
         var data = {
-            content: $('#content').val(),
-            created_by: $('#author').val(),
+            content: $('#save-comment-content').val(),
+            created_by: $('#save-comment-author').val(),
             post_id: $('#post_id').val(),
             user_id: $('#user_id').val()
         };
