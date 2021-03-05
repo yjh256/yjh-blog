@@ -24,12 +24,11 @@
 </form>
 {{#comments}}
     <div class="comments" id="comment-{{id}}">
-        <h5 class="commentsAuthor">{{created_by}}
-            <small class="only-for-author" hidden>
-                <a href="#" class="btn btn-primary comment-edit-btn" data-toggle="collapse" data-target=".multi-collapse-{{id}}">수정</a>
-                <button type="button" class="btn btn-danger" id="btn-comment-delete">삭제</button>
-            </small>
-        </h5>
+        <h5 class="commentsAuthor">{{created_by}}</h5>
+        <small class="only-for-author" hidden>
+            <a href="#" class="btn btn-primary comment-edit-btn" data-toggle="collapse" data-target=".multi-collapse-{{id}}">수정</a>
+            <button type="button" class="btn btn-danger" id="btn-comment-delete">삭제</button>
+        </small>
         <p class="collapse multi-collapse-{{id}} show">{{content}}</p>
         <form class="collapse multi-collapse-{{id}}">
             <div class="form-group">

@@ -9,3 +9,7 @@
     display:grid;
     grid-template-columns: 1fr 80px;
 }
+
+.commentsAuthor {
+    display:inline;
+}
