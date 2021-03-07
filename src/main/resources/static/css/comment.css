@@ -20,7 +20,8 @@
 }
 
 .commentsAuthor {
-    display:inline;
+    display:inline-block;
+    margin-right: 10px;
 }
 
 .comments-modifiedDate {
