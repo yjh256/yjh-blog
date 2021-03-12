@@ -73,7 +73,7 @@ var main = {
 main.init();
 
 var page_num = document.location.href.split("?page=")[1]
-$(".page-numbers").filter(() => page_num == this.innerText)
+$(".page-numbers").filter(() => page_num == this.text())
     .addClass("active")
 
 $(".modifiedDate").each(() => {

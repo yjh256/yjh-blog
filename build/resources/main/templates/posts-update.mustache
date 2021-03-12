@@ -3,11 +3,10 @@
 <h1>게시글 수정</h1>
 
 <div class="col-md-12">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form>
             <div class="form-group">
-                <label for="id">글 번호</label>
-                <input type="text" class="form-control" id="id" value="{{post.id}}" readonly>
+                <input type="text" class="form-control" id="id" value="{{post.id}}" hidden>
                 <!-- readonly는 Input 태그에 읽기 기능만 허용하는 속성이다. -->
             </div>
             <div class="form-group">
@@ -17,7 +16,7 @@
             <div class="form-group">
                 <label for="classification"> 분류 </label>
                 <select name="classification" id="classification">
-                    <option value="">분류를 선택하세요</option>
+                    <option value="{{post.classification}}">{{post.classification}}</option>
                     <option value="html">HTML</option>
                     <option value="css">CSS</option>
                     <option value="javascript">JAVASCRIPT</option>
@@ -30,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content">{{post.content}}</textarea>
+                <textarea class="form-control" id="content" rows="15">{{post.content}}</textarea>
             </div>
         </form>
         <a href="/" role="button" class="btn btn-secondary">취소</a>

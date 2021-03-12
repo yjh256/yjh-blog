@@ -72,17 +72,12 @@ var main = {
 
 main.init();
 
-var page_num = document.location.href.split("?page=")
-var page_numbers = document.querySelectorAll(".page-numbers");
-for (var i = 0; i < page_numbers.length; i++) {
-    var number = page_numbers.item(i);
-    if (number.innerText == page_num[1]) {
-        number.classList.add("active");
-    }
-}
+var page_num = document.location.href.split("?page=")[1]
+$(".page-numbers").filter(() => page_num == this.innerText)
+    .addClass("active")
 
-var modifiedDates = document.querySelectorAll(".modifiedDate");
-for (var i = 0; i < modifiedDates.length; i++) {
-    str = modifiedDates.item(i).innerText.split("T");
-    modifiedDates.item(i).innerText = str[0]+" "+str[1];
-}
+$(".modifiedDate").each(() => {
+    var text = $(this).text();
+    $(this).text(text.replace('T', ' '));
+});
+
