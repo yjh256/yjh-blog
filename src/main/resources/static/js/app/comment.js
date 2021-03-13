@@ -89,7 +89,7 @@ var author = $("#save-comment-author").val();
 $(".only-for-author").filter(function() {
     var created_by = $(this).siblings('.commentsAuthor').text();
     return created_by == author;
-}).attr("hidden", "false");
+}).attr("hidden", false);
 
 $(".comments-modifiedDate").each((index, element) => {
     var text = element.innerText;
