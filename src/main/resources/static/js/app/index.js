@@ -73,11 +73,11 @@ var main = {
 main.init();
 
 var page_num = document.location.href.split("?page=")[1]
-$(".page-numbers").filter(() => page_num == $(this).text())
-    .addClass("active")
+$(".page-numbers").filter((index, element) => element.innerText == page_num)
+    .addClass("active");
 
-$(".modifiedDate").each(() => {
-    var text = $(this).text();
-    $(this).text(text.replace('T', ' '));
+$(".modifiedDate").each((index, element) => {
+    var text = element.innerText;
+    element.innerText = text.replace('T', ' ');
 });
 
