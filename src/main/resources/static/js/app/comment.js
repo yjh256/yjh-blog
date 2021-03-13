@@ -85,17 +85,13 @@ var main = {
 
 main.init();
 
-var only_for_author = document.querySelectorAll(".only-for-author");
-var author = document.querySelector("#save-comment-author").value;
-for (var i = 0; i < only_for_author.length; i++) {
-    var created_by = document.querySelectorAll(".commentsAuthor");
-    if (created_by.item(i).textContent == author) {
-        only_for_author.item(i).hidden = false;
-    }
-}
+var author = $("#save-comment-author").val();
+$(".only-for-author").filter(function() {
+    var created_by = $(this).siblings('.commentsAuthor').text();
+    return created_by == author;
+}).attr("hidden", "false");
 
-var modifiedDates = document.querySelectorAll(".comments-modifiedDate");
-for (var i = 0; i < modifiedDates.length; i++) {
-    str = modifiedDates.item(i).innerText.split("T");
-    modifiedDates.item(i).innerText = str[0]+" "+str[1];
-}
+$(".comments-modifiedDate").each((index, element) => {
+    var text = element.innerText;
+    element.innerText = text.replace('T', ' ');
+});
