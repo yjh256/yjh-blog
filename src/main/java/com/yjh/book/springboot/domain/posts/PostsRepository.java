@@ -19,6 +19,6 @@ public interface PostsRepository extends JpaRepository<Posts, Long> { // JpaRepo
     Page<Posts> findByClassification(Pageable pageable, String classification);
 
     @Modifying
-    @Query("update Posts p set p.view = p.view+1 where p.id=:id")
+    @Query("update Posts p set p.view=p.view+1 where p.id=:id")
     int updateView(@Param("id") Long id);
 }
