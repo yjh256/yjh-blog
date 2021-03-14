@@ -63,14 +63,14 @@ public class PostsService {
     @Transactional
     public Page<Posts> findAll(Pageable pageable) {
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
-        pageable = PageRequest.of(page, 10, new Sort(Sort.Direction.DESC, "id"));
+        pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
         return postsRepository.findAll(pageable);
     }
 
     @Transactional
     public Page<Posts> findByClassification(Pageable pageable, String classification) {
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
-        pageable = PageRequest.of(page, 10, new Sort(Sort.Direction.DESC, "id"));
+        pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
         return postsRepository.findByClassification(pageable, classification);
     }
 

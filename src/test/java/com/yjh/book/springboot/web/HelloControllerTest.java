@@ -1,24 +1,22 @@
 package com.yjh.book.springboot.web;
 
 import com.yjh.book.springboot.config.auth.SecurityConfig;
-import com.yjh.book.springboot.web.HelloController;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.stereotype.Component;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class) // 테스트 진행 시 JUnit에 내장된 실행자 외에 다른 실행자를 실행한다.
-                             // SpringRunner.class는 스프링 부트 테스트와 JUnit 사이의 연결자 역할을 한다.
+@ExtendWith(SpringExtension.class) // 테스트 진행 시 JUnit에 내장된 실행자 외에 다른 실행자를 실행한다.
+                             // SpringExtension.class는 스프링 부트 테스트와 JUnit 사이의 연결자 역할을 한다.
 @WebMvcTest(controllers = HelloController.class, // Web(Spring MVC)에 집중할 수 있는 스프링 테스트 annotation으로, @Controller, @ControllerAdvice 등을 사용할 수 있지만 @Service, @Component, @Repository 등은 사용할 수 없다.
         excludeFilters = {                       // 단, WebMvcTest의 경우 JPA 기능이 작동하지 않고, Controller, ControllerAdivice 등 외부 연동과 관련된 부분만 활성화된다.
         @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)
