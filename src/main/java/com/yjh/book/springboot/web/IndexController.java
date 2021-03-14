@@ -50,6 +50,7 @@ public class IndexController {
     @GetMapping("/posts/{id}")
     public String post(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
         PostsResponseDto dto = postsService.findById(id);
+        postsService.updateView(id);
         model.addAttribute("post",dto);
         model.addAttribute("comments", commentsService.listsComments(id));
         if (user != null) {
