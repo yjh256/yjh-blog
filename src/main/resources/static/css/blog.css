@@ -69,13 +69,16 @@ body {
         width: 50px;
     }
     .post-col-2 {
-        width: 55%;
+        width: 50%;
     }
     .post-col-3 {
         width: 20%;
     }
     .post-col-4 {
         width: 20%;
+    }
+    .post-col-5 {
+        width: 80px;
     }
     .post-update-and-back {
         text-align:right;
