@@ -10,11 +10,13 @@ public class PostsResponseDto {
     private String title;
     private String content;
     private String classification;
+    private int view;
 
     public PostsResponseDto(Posts entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.classification = entity.getClassification();
+        this.view = entity.getView();
     }
 }

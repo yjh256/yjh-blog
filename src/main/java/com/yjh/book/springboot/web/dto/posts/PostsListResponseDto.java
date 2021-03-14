@@ -11,11 +11,13 @@ public class PostsListResponseDto {
     private String title;
     private String classification;
     private LocalDateTime modifiedDate;
+    private int view;
 
     public PostsListResponseDto(Posts entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.classification = entity.getClassification();
         this.modifiedDate = entity.getModifiedDate();
+        this.view = entity.getView();
     }
 }

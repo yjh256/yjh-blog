@@ -24,6 +24,9 @@ public class Posts extends BaseTimeEntity{
     @Column(nullable = false)
     private String classification;
 
+    @Column(columnDefinition = "integer default 0")
+    private Integer view;
+
     @Builder // 해당 클래스의 빌더 패턴 클래스 생성, 생성자 상단에 선언 시 생성자에 포함된 field만 빌더에 포함
     public Posts(String title, String content, String classification){
         this.title = title;

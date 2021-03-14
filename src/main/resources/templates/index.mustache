@@ -9,6 +9,7 @@
                 <th class="post-col-2">제목</th>
                 <th class="post-col-3">분류</th>
                 <th class="post-col-4">등록일</th>
+                <th class="post-col-5">조회수</th>
             </tr>
             </thead>
             <tbody id="tbody">
@@ -18,6 +19,7 @@
                     <td class="post-col-2"><a href="/posts/{{id}}">{{title}}</a></td>
                     <td class="post-col-3">{{classification}}</td>
                     <td class="post-col-4 modifiedDate">{{modifiedDate}}</td>
+                    <td class="post-col-5">{{view}}</td>
                 </tr>
             {{/posts}}
             </tbody>

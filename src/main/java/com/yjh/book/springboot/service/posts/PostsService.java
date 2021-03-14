@@ -38,6 +38,15 @@ public class PostsService {
 
     }
 
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        postsRepository.delete(posts); // Entity를 파라미터로 삭제할 수도 있고, deleteById 메소드를 이용해 id로 삭제할 수도 있다.
+    }
+
+    @Transactional
     public PostsResponseDto findById (Long id) {
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = "+id));
@@ -82,10 +91,7 @@ public class PostsService {
     }
 
     @Transactional
-    public void delete(Long id) {
-        Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
-
-        postsRepository.delete(posts); // Entity를 파라미터로 삭제할 수도 있고, deleteById 메소드를 이용해 id로 삭제할 수도 있다.
+    public  int updateView(Long id) {
+        return postsRepository.updateView(id);
     }
 }
