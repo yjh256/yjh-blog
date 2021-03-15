@@ -3,12 +3,16 @@ package com.yjh.book.springboot.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor // 기본 생성자 자동 추가
 @Entity // 테이블에 링크될 클래스임을 나타낸다. * Entity 클래스에서는 절대 setter 메소드를 만들지 않는다.
+@DynamicInsert
+@DynamicUpdate
 public class Posts extends BaseTimeEntity{
 
     @Id // 테이블의 PK field를 나타낸다.
