@@ -58,6 +58,7 @@ body {
     }
     .center {
         justify-content:center;
+        text-align:center;
     }
     .post-col-1, .post-col-2, .post-col-3, .post-col-4, .post-col-5 {
         white-space: nowrap;

@@ -9,7 +9,6 @@ import net.minidev.json.annotate.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "COMMENTS")
 @Getter
 @NoArgsConstructor
 public class Comments extends BaseTimeEntity {

@@ -75,6 +75,20 @@ public class PostsService {
     }
 
     @Transactional
+    public Page<Posts> findByTitle(Pageable pageable, String keyword) {
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
+        pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
+        return postsRepository.findByTitleContaining(pageable, keyword);
+    }
+
+    @Transactional
+    public Page<Posts> findByTitleInClassification(Pageable pageable, String classification, String keyword) {
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
+        pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
+        return postsRepository.findByTitleContainingAndClassification(pageable, keyword, classification);
+    }
+
+    @Transactional
     public int[] getPageSequence(String classification, Pageable pageable) {
         Page<Posts> posts;
         if (classification == "") posts = findAll(pageable);

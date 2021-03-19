@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @Controller
@@ -24,8 +25,11 @@ public class IndexController {
     private final CommentsService commentsService;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable) { // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
-        model.addAttribute("posts", postsService.findAll(pageable));
+    public String index(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @RequestParam(value = "classification", required = false) String classification) { // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
+        if (classification == null) {
+            model.addAttribute("posts", postsService.findAll(pageable));
+        }
+        else model.addAttribute("posts", postsService.findByClassification(pageable, classification));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("numbers", postsService.getPageSequence("", pageable));
@@ -35,12 +39,15 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/{classification}")
-    public String index(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification) {
-        model.addAttribute("posts", postsService.findByClassification(pageable, classification));
+    @GetMapping("/search")
+    public String search(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @RequestParam(value = "classification", required = false) String classification, @RequestParam(value = "keyword") String keyword) {
+        if (classification == null) {
+            model.addAttribute("posts", postsService.findByTitle(pageable, keyword));
+        }
+        else model.addAttribute("posts", postsService.findByTitleInClassification(pageable, keyword, classification));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("numbers", postsService.getPageSequence(classification, pageable));
+        model.addAttribute("numbers", postsService.getPageSequence("", pageable));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
