@@ -82,7 +82,7 @@ public class PostsService {
     }
 
     @Transactional
-    public Page<Posts> findByTitleInClassification(Pageable pageable, String classification, String keyword) {
+    public Page<Posts> findByTitleInClassification(Pageable pageable, String keyword, String classification) {
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
         pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
         return postsRepository.findByTitleContainingAndClassification(pageable, keyword, classification);
