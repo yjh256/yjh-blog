@@ -43,7 +43,7 @@ public class IndexController {
         model.addAttribute("posts", postsService.findByClassification(pageable, classification));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("numbers", postsService.getPageSequence("", pageable));
+        model.addAttribute("numbers", postsService.getPageSequence(classification, pageable));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
@@ -69,7 +69,7 @@ public class IndexController {
         model.addAttribute("posts", postsService.findByTitleInClassification(pageable, keyword, classification));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("numbers", postsService.getPageSequence("", pageable));
+        model.addAttribute("numbers", postsService.getPageSequence(classification, pageable));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
