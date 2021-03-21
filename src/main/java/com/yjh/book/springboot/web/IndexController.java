@@ -25,11 +25,22 @@ public class IndexController {
     private final CommentsService commentsService;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @RequestParam(value = "classification", required = false) String classification) { // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
-        if (classification == null) {
-            model.addAttribute("posts", postsService.findAll(pageable));
+    public String index(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable) { // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
+        model.addAttribute("classification", "");
+        model.addAttribute("posts", postsService.findAll(pageable));
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("numbers", postsService.getPageSequence("", pageable));
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
         }
-        else model.addAttribute("posts", postsService.findByClassification(pageable, classification));
+        return "index";
+    }
+
+    @GetMapping("/board/{classification}")
+    public String classification(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification) { // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
+        model.addAttribute("classification", classification);
+        model.addAttribute("posts", postsService.findByClassification(pageable, classification));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("numbers", postsService.getPageSequence("", pageable));
@@ -40,11 +51,22 @@ public class IndexController {
     }
 
     @GetMapping("/search")
-    public String search(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @RequestParam(value = "classification", required = false) String classification, @RequestParam(value = "keyword") String keyword) {
-        if (classification == null) {
-            model.addAttribute("posts", postsService.findByTitle(pageable, keyword));
+    public String search(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @RequestParam(value = "keyword") String keyword) {
+        model.addAttribute("classification", "");
+        model.addAttribute("posts", postsService.findByTitle(pageable, keyword));
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("numbers", postsService.getPageSequence("", pageable));
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
         }
-        else model.addAttribute("posts", postsService.findByTitleInClassification(pageable, keyword, classification));
+        return "index";
+    }
+
+    @GetMapping("/search/{classification}")
+    public String search(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification, @RequestParam(value = "keyword") String keyword) {
+        model.addAttribute("classification", classification);
+        model.addAttribute("posts", postsService.findByTitleInClassification(pageable, keyword, classification));
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("numbers", postsService.getPageSequence("", pageable));

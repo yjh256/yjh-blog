@@ -24,47 +24,94 @@
     {{/posts}}
     </tbody>
 </table>
-<nav aria-label="Page navigation">
-    <ul class="pagination center">
-        <li class="page-item">
-            <a class="page-link" href="?page=1">&lt;&lt;</a>
-        </li>
-        {{#posts.first}}
-            <li class="page-item disabled">
-                <a class="page-link" href="?page={{posts.number}}">&lt;</a>
-            </li>
-        {{/posts.first}}
-        {{^posts.first}}
+{{#classification}}
+    <nav aria-label="Page navigation">
+        <ul class="pagination center">
             <li class="page-item">
-                <a class="page-link" href="?page={{posts.number}}">&lt;</a>
+                <a class="page-link" href="/board/{{classification}}/?page=1">&lt;&lt;</a>
             </li>
-        {{/posts.first}}
+            {{#posts.first}}
+                <li class="page-item disabled">
+                    <a class="page-link" href="/board/{{classification}}/?page={{posts.number}}">&lt;</a>
+                </li>
+            {{/posts.first}}
+            {{^posts.first}}
+                <li class="page-item">
+                    <a class="page-link" href="/board/{{classification}}/?page={{posts.number}}">&lt;</a>
+                </li>
+            {{/posts.first}}
 
-        {{#numbers}}
-            <li class="page-item page-numbers" >
-                <a class="page-link" href="?page={{.}}">{{.}}</a>
-            </li>
-        {{/numbers}}
-        {{#posts.last}}
-            <li class="page-item disabled">
-                <a class="page-link" href="?page={{next}}">&gt;</a>
-            </li>
-        {{/posts.last}}
-        {{^posts.last}}
+            {{#numbers}}
+                <li class="page-item page-numbers" >
+                    <a class="page-link" href="/board/{{classification}}/?page={{.}}">{{.}}</a>
+                </li>
+            {{/numbers}}
+            {{#posts.last}}
+                <li class="page-item disabled">
+                    <a class="page-link" href="/board/{{classification}}/?page={{next}}">&gt;</a>
+                </li>
+            {{/posts.last}}
+            {{^posts.last}}
+                <li class="page-item">
+                    <a class="page-link" href="/board/{{classification}}/?page={{next}}">&gt;</a>
+                </li>
+            {{/posts.last}}
             <li class="page-item">
-                <a class="page-link" href="?page={{next}}">&gt;</a>
+                <a class="page-link" href="/board/{{classification}}/?page={{posts.totalPages}}">&gt;&gt;</a>
             </li>
-        {{/posts.last}}
-        <li class="page-item">
-            <a class="page-link" href="?page={{posts.totalPages}}">&gt;&gt;</a>
-        </li>
-    </ul>
-    <form action="/search" method="GET">
-        <div class="search center">
-            <input name="keyword" type="text" placeholder="검색어를 입력해주세요.">
-            <button class="btn btn-info">검색하기</button>
-        </div>
-    </form>
-</nav>
+        </ul>
+        <form action="/search/{{classification}}" method="GET">
+            <div class="search center">
+                <input name="keyword" type="text" placeholder="검색어를 입력해주세요.">
+                <button class="btn btn-info">검색하기</button>
+            </div>
+        </form>
+    </nav>
+{{/classification}}
+{{^classification}}
+    <nav aria-label="Page navigation">
+        <ul class="pagination center">
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&lt;&lt;</a>
+            </li>
+            {{#posts.first}}
+                <li class="page-item disabled">
+                    <a class="page-link" href="?page={{posts.number}}">&lt;</a>
+                </li>
+            {{/posts.first}}
+            {{^posts.first}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{posts.number}}">&lt;</a>
+                </li>
+            {{/posts.first}}
+
+            {{#numbers}}
+                <li class="page-item page-numbers" >
+                    <a class="page-link" href="?page={{.}}">{{.}}</a>
+                </li>
+            {{/numbers}}
+            {{#posts.last}}
+                <li class="page-item disabled">
+                    <a class="page-link" href="?page={{next}}">&gt;</a>
+                </li>
+            {{/posts.last}}
+            {{^posts.last}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{next}}">&gt;</a>
+                </li>
+            {{/posts.last}}
+            <li class="page-item">
+                <a class="page-link" href="?page={{posts.totalPages}}">&gt;&gt;</a>
+            </li>
+        </ul>
+        <form action="/search/{{classification}}" method="GET">
+            <div class="search center">
+                <input name="keyword" type="text" placeholder="검색어를 입력해주세요.">
+                <button class="btn btn-info">검색하기</button>
+            </div>
+        </form>
+    </nav>
+{{/classification}}
+
 
 {{>layout/footer}}
