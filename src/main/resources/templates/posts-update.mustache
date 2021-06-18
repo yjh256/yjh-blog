@@ -1,19 +1,19 @@
 {{>layout/header}}
 
-<h1>게시글 수정</h1>
+<h1 class="post-save-header">게시글 수정</h1>
 
 <div class="col-md-12">
-    <div class="col-md-6">
+    <div class="col-md-6 post-save-form">
         <form>
             <div class="form-group">
                 <input type="text" class="form-control" id="id" value="{{post.id}}" hidden>
                 <!-- readonly는 Input 태그에 읽기 기능만 허용하는 속성이다. -->
             </div>
-            <div class="form-group">
+            <div class="form-group post-save-title">
                 <label for="title">제목</label>
                 <input type="text" class="form-control" id="title" value="{{post.title}}">
             </div>
-            <div class="form-group">
+            <div class="form-group post-save-classification">
                 <label for="classification"> 분류 </label>
                 <select name="classification" id="classification">
                     <option value="{{post.classification}}">{{post.classification}}</option>
@@ -27,15 +27,17 @@
                     <option value="OS">OS</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group post-save-content">
                 <label for="content"> 내용 </label>
                 <textarea class="form-control" id="content" rows="15">{{post.content}}</textarea>
             </div>
         </form>
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
-        <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
-        <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
-    </div>
+        <div class="post-save-buttons">
+            <a href="/" role="button" class="btn btn-secondary">취소</a>
+            <button type="button" class="btn btn-primary" id="btn-update">수정 완료</button>
+            <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
+        </div>
+            </div>
 </div>
 </div>
 

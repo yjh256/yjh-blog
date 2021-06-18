@@ -84,6 +84,18 @@ body {
     .post-update-and-back {
         text-align:right;
     }
+    .post-save-header {
+        text-align: center;
+        margin: 30px;
+    }
+    .post-save-form {
+        margin-left: 25%;
+        margin-bottom: 50px;
+    }
+    .post-save-buttons {
+        text-align: right;
+    }
+
 }
 
 @media screen and (max-width: 900px) {
@@ -96,6 +108,9 @@ body {
         text-align: center;
         margin: 0;
         padding: 0;
+    }
+    .post-col-4 {
+        display: none;
     }
 }
 
@@ -119,5 +134,8 @@ body {
         overflow: hidden;
         text-overflow: ellipsis;
         text-align: center;
+    }
+    .post-col-4 {
+        display: none;
     }
 }
