@@ -16,9 +16,8 @@
         <div class="row">
             <div class="col-md-6"></div>
             <div class="col-md-6" id="login">
-                <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
                 {{#userName}}
-                    Logged in as: <span id="user">{{userName}}</span>
+                    <span id="user">{{userName}}</span> 님 환영합니다.
                     <a href="/logout" class="btn btn-info active" role="button">Logout</a>
                 {{/userName}}
                 {{^userName}}
@@ -30,7 +29,7 @@
             </div>
         </div>
         <br>
-        <ul class="nav col-md-12">
+        <ul class="nav col-md-12 index-nav">
             <li class="header-list"><a class="classification" href="/board/html">html</a></li>
             <li class="header-list"><a class="classification" href="/board/css">css</a></li>
             <li class="header-list"><a class="classification" href="/board/javascript">javascript</a></li>

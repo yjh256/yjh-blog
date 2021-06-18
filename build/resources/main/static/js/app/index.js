@@ -81,3 +81,5 @@ $(".modifiedDate").each((index, element) => {
     element.innerText = text.replace('T', ' ');
 });
 
+var classification = document.location.href.split("?")
+

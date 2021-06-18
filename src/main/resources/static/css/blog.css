@@ -95,6 +95,10 @@ body {
     .post-save-buttons {
         text-align: right;
     }
+    .index-post-save-button {
+        position: absolute;
+        right: 20px;
+    }
 
 }
 
