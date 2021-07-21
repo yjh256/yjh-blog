@@ -2,19 +2,34 @@ package com.yjh.book.springboot.web;
 
 import com.yjh.book.springboot.config.auth.LoginUser;
 import com.yjh.book.springboot.config.auth.dto.SessionUser;
+import com.yjh.book.springboot.domain.files.MD5Generator;
 import com.yjh.book.springboot.domain.user.User;
 import com.yjh.book.springboot.domain.user.UserRepository;
-import com.yjh.book.springboot.service.comments.CommentsService;
-import com.yjh.book.springboot.service.posts.PostsService;
+import com.yjh.book.springboot.service.CommentsService;
+import com.yjh.book.springboot.service.FilesService;
+import com.yjh.book.springboot.service.PostsService;
+import com.yjh.book.springboot.web.dto.Files.FileDto;
 import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
+import com.yjh.book.springboot.web.dto.posts.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RequiredArgsConstructor
 @Controller
@@ -23,6 +38,7 @@ public class IndexController {
     private final UserRepository userRepository;
     private final PostsService postsService;
     private final CommentsService commentsService;
+    private final FilesService filesService;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable) { // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
@@ -79,7 +95,9 @@ public class IndexController {
     @GetMapping("/posts/{id}")
     public String post(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
         PostsResponseDto dto = postsService.findById(id);
+        String filename = filesService.getFile(dto.getFileId()).getOrigFileName();
         postsService.updateView(id);
+        model.addAttribute("filename", filename);
         model.addAttribute("post",dto);
         model.addAttribute("comments", commentsService.listsComments(id));
         if (user != null) {
@@ -107,4 +125,59 @@ public class IndexController {
         }
         return "posts-update";
     }
+
+    @GetMapping("/download/{fileId}")
+    public ResponseEntity<Resource> fileDownload(@PathVariable("fileId") Long fileId) throws IOException {
+        FileDto fileDto = filesService.getFile(fileId);
+        Path path = Paths.get(fileDto.getFilePath());
+        Resource resource = new InputStreamResource(Files.newInputStream(path));
+        String fileName = URLEncoder.encode(fileDto.getOrigFileName()).replaceAll("\\+", "%20");
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                .body(resource);
+    }
+
+    @PostMapping("/api/v1/posts")
+    public String save(@RequestParam("file") MultipartFile files,
+                       @RequestParam("title") String title,
+                       @RequestParam("classification") String classification,
+                       @RequestParam("content") String content) {
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .title(title)
+                .classfication(classification)
+                .content(content)
+                .build();
+        try {
+            String origFileName = files.getOriginalFilename();
+            String fileName = new MD5Generator(origFileName).toString();
+            String savePath = System.getProperty("user.dir") + "\\files";
+            if (!new File(savePath).exists()) {
+                try {
+                    new File(savePath).mkdir();
+                } catch(Exception e) {
+                    e.getStackTrace();
+                }
+            }
+            String filePath = savePath + "\\" + fileName;
+            files.transferTo(new File(filePath));
+
+            FileDto fileDto = FileDto.builder()
+                    .origFileName(origFileName)
+                    .fileName(fileName)
+                    .filePath(filePath)
+                    .build();
+
+            Long fileId = filesService.saveFile(fileDto);
+            requestDto.setFileId(fileId);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        postsService.save(requestDto);
+
+        return "redirect:/";
+    }
+
+
+
 }

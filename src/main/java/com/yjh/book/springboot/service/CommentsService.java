@@ -1,4 +1,4 @@
-package com.yjh.book.springboot.service.comments;
+package com.yjh.book.springboot.service;
 
 import com.yjh.book.springboot.domain.comments.Comments;
 import com.yjh.book.springboot.domain.comments.CommentsRepository;

@@ -4,10 +4,10 @@
 
 <div class="col-md-12">
     <div class="col-md-6 post-save-form">
-        <form>
+        <form action="/api/v1/posts" method="post" enctype="multipart/form-data">
             <div class="form-group post-save-title">
                 <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+                <input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
             </div>
             <div class="form-group post-save-classification">
                 <label for="classification"> 분류 </label><br>
@@ -25,13 +25,23 @@
             </div>
             <div class="form-group post-save-content">
                 <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content" placeholder="내용을 입력하세요" rows="15"></textarea>
+                <textarea name="content" class="form-control" id="content" placeholder="내용을 입력하세요" rows="15"></textarea>
+            </div>
+            <div class="form-group post-save-inputFile">
+                <label for="inputFile"> 첨부파일 </label>
+                <div class="col-md-12">
+                    <input name="file" type="file" multiple="multiple" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">파일을 선택해 주세요.</label>
+                </div>
+            </div>
+            <div class="post-save-buttons">
+                <a href="/" role="button" class="btn btn-secondary">취소</a>
+                <a href="/">
+                    <input type="submit" class="btn btn-primary" role="button" id="btn-save" value="등록" >
+                </a>
+
             </div>
         </form>
-        <div class="post-save-buttons">
-            <a href="/" role="button" class="btn btn-secondary">취소</a>
-            <button type="button" class="btn btn-primary" id="btn-save">등록</button>
-        </div>
     </div>
 </div>
 </div>

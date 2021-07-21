@@ -1,11 +1,9 @@
 package com.yjh.book.springboot.web;
 
-import com.yjh.book.springboot.domain.comments.Comments;
-import com.yjh.book.springboot.service.comments.CommentsService;
+import com.yjh.book.springboot.service.CommentsService;
 import com.yjh.book.springboot.web.dto.comments.CommentsListResponseDto;
 import com.yjh.book.springboot.web.dto.comments.CommentsSaveRequestDto;
 import com.yjh.book.springboot.web.dto.comments.CommentsUpdateRequestDto;
-import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

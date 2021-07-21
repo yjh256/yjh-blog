@@ -5,6 +5,7 @@ import com.yjh.book.springboot.domain.posts.Posts;
 import com.yjh.book.springboot.domain.posts.PostsRepository;
 import com.yjh.book.springboot.web.dto.posts.PostsSaveRequestDto;
 import com.yjh.book.springboot.web.dto.posts.PostsUpdateRequestDto;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,8 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

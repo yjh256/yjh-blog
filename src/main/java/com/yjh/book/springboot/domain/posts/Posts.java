@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -31,11 +32,15 @@ public class Posts extends BaseTimeEntity{
     @Column(columnDefinition = "integer default 0")
     private Integer view;
 
+    @Column
+    private Long fileId;
+
     @Builder // 해당 클래스의 빌더 패턴 클래스 생성, 생성자 상단에 선언 시 생성자에 포함된 field만 빌더에 포함
-    public Posts(String title, String content, String classification){
+    public Posts(String title, String content, String classification, Long fileId){
         this.title = title;
         this.content = content;
         this.classification = classification;
+        this.fileId = fileId;
     }
 
     public void update(String title, String content, String classification) {

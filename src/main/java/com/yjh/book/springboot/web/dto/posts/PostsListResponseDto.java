@@ -12,6 +12,7 @@ public class PostsListResponseDto {
     private String classification;
     private LocalDateTime modifiedDate;
     private int view;
+    private Long fileId;
 
     public PostsListResponseDto(Posts entity) {
         this.id = entity.getId();
@@ -19,5 +20,6 @@ public class PostsListResponseDto {
         this.classification = entity.getClassification();
         this.modifiedDate = entity.getModifiedDate();
         this.view = entity.getView();
+        this.fileId = entity.getFileId();
     }
 }

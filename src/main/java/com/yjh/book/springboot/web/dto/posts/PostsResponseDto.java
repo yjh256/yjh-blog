@@ -11,6 +11,7 @@ public class PostsResponseDto {
     private String content;
     private String classification;
     private int view;
+    private Long fileId;
 
     public PostsResponseDto(Posts entity) {
         this.id = entity.getId();
@@ -18,5 +19,6 @@ public class PostsResponseDto {
         this.content = entity.getContent();
         this.classification = entity.getClassification();
         this.view = entity.getView();
+        this.fileId = entity.getFileId();
     }
 }
