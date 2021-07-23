@@ -17,4 +17,8 @@ public class PostsUpdateRequestDto {
         this.classification = classification;
         this.fileId = fileId;
     }
+
+    public void setFileId(Long fileId) {
+        this.fileId = fileId;
+    }
 }

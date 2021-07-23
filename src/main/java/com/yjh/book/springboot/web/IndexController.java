@@ -11,6 +11,7 @@ import com.yjh.book.springboot.service.PostsService;
 import com.yjh.book.springboot.web.dto.Files.FileDto;
 import com.yjh.book.springboot.web.dto.posts.PostsResponseDto;
 import com.yjh.book.springboot.web.dto.posts.PostsSaveRequestDto;
+import com.yjh.book.springboot.web.dto.posts.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -95,9 +96,11 @@ public class IndexController {
     @GetMapping("/posts/{id}")
     public String post(Model model, @LoginUser SessionUser user, @PathVariable Long id) {
         PostsResponseDto dto = postsService.findById(id);
-        String filename = filesService.getFile(dto.getFileId()).getOrigFileName();
+        if (dto.getFileId() != null) {
+            String filename = filesService.getFile(dto.getFileId()).getOrigFileName();
+            model.addAttribute("filename", filename);
+        }
         postsService.updateView(id);
-        model.addAttribute("filename", filename);
         model.addAttribute("post",dto);
         model.addAttribute("comments", commentsService.listsComments(id));
         if (user != null) {
@@ -148,8 +151,40 @@ public class IndexController {
                 .classfication(classification)
                 .content(content)
                 .build();
+        Long fileId = saveFile(files);
+        if (fileId != -1L) {
+            requestDto.setFileId(fileId);
+        }
+        postsService.save(requestDto);
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/api/v1/posts/{id}")
+    public String update(@PathVariable Long id,
+                       @RequestParam("file") MultipartFile files,
+                       @RequestParam("title") String title,
+                       @RequestParam("classification") String classification,
+                       @RequestParam("content") String content){
+        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
+                .title(title)
+                .classification(classification)
+                .content(content)
+                .build();
+        Long fileId = saveFile(files);
+        if (fileId != -1L) {
+            requestDto.setFileId(fileId);
+        }
+        postsService.update(id, requestDto);
+        return "redirect:/";
+    }
+
+    private Long saveFile(MultipartFile files) {
         try {
             String origFileName = files.getOriginalFilename();
+            if (origFileName.length() == 0) {
+                return -1L;
+            }
             String fileName = new MD5Generator(origFileName).toString();
             String savePath = System.getProperty("user.dir") + "\\files";
             if (!new File(savePath).exists()) {
@@ -169,15 +204,11 @@ public class IndexController {
                     .build();
 
             Long fileId = filesService.saveFile(fileDto);
-            requestDto.setFileId(fileId);
+            return fileId;
         } catch(Exception e) {
             e.printStackTrace();
         }
-        postsService.save(requestDto);
-
-        return "redirect:/";
+        return -1L;
     }
-
-
 
 }
