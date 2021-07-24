@@ -99,7 +99,10 @@ body {
         position: absolute;
         right: 20px;
     }
-
+    .posts-content {
+        margin: 0 15%;
+        max-width: 70%;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -120,13 +123,17 @@ body {
         margin: 0 10%;
         max-width: 80%;
     }
+    .posts-content {
+        margin: 0 10%;
+        max-width: 80%;
+    }
 }
 
 @media screen and (max-width: 768px) {
 
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
     .nav {
         grid-template-rows: repeat(8, 64px);
         grid-template-columns: repeat(1, 1fr);
@@ -147,6 +154,10 @@ body {
         display: none;
     }
     .post-save-form {
+        margin: 0 5%;
+        max-width: 90%;
+    }
+    .posts-content {
         margin: 0 5%;
         max-width: 90%;
     }
