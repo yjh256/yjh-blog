@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPOSITORY=/home/ec2-user/app/step2
-PROJECT_NAME=springboot-web
+PROJECT_NAME=yjh-blog
 
 echo "> Build 파일 복사"
 
@@ -11,7 +11,7 @@ echo "> 현재 구동 중인 애플리케이션 pid 확인"
 
 # 현재 수행 중인 스프링 부트 애플리케이션의 프로세스 ID를 찾는다. 이는 실행 중인 경우 종료하기 위함이다.
 # 스프링 부트 애플리케이션 이름으로 된 다른 프로그램들이 있을 수 있어 springboot-web으로 된 jar 프로세스를 찾은 뒤 ID를 찾는다.
-CURRENT_PID=$(pgrep -fl springboot-web|grep jar|awk '{print $1}')
+CURRENT_PID=$(pgrep -fl yjh-blog|grep jar|awk '{print $1}')
 
 echo "현재 구동 중인 애플리케이션 pid: $CURRENT_PID"
 
