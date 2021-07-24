@@ -26,7 +26,7 @@ before_deploy:
   - cp build/libs/*.jar before-deploy/
   - cd before-deploy && zip -r before-deploy * # 현재 위치의 모든 파일을 압축
   - cd ../ && mkdir -p deploy
-  - mv before-deploy/before-deploy.zip deploy/springboot-web.zip # 파일 이동
+  - mv before-deploy/before-deploy.zip deploy/yjh-blog.zip # 파일 이동
 
 # S3로 파일 업로드 혹은 CodeDeploy로 배포 등 외부 서비스와 연동될 행위들을 선언
 deploy:
@@ -46,10 +46,10 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: springboot-web-yjh-build
-    key: springboot-web.zip # 빌드 파일을 압축해서 전달
+    key: yjh-blog.zip # 빌드 파일을 압축해서 전달
     bundle-type: zip # 압축 확장자
-    application: springboot-web # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
-    deployment-group: springboot-web-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    application: yjh-blog # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
+    deployment-group: yjh-blog-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
 
