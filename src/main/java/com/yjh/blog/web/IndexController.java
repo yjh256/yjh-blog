@@ -182,6 +182,7 @@ public class IndexController {
     private Long saveFile(MultipartFile files) {
         try {
             String origFileName = files.getOriginalFilename();
+            MultipartFile file = files;
             if (origFileName.length() == 0) {
                 return -1L;
             }
@@ -195,7 +196,7 @@ public class IndexController {
                 }
             }
             String filePath = savePath + "\\" + fileName;
-            files.transferTo(new File(filePath));
+            file.transferTo(new File(filePath));
 
             FileDto fileDto = FileDto.builder()
                     .origFileName(origFileName)

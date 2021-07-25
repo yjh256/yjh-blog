@@ -4,6 +4,11 @@ plugins { // (1)
     id 'java'
 }
 
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot/" }
+}
+
 group 'com.yjh.book'
 version '1.0.4-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
 sourceCompatibility = 1.8
@@ -12,6 +17,8 @@ repositories {
     mavenCentral()
     jcenter()
 }
+
+ext['spring-framework.version'] = "5.3.3-SNAPSHOT"
 
 // for Junit 5
 test { // (2)

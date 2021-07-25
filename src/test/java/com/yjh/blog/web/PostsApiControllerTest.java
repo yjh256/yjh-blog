@@ -15,18 +15,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -45,6 +47,7 @@ public class PostsApiControllerTest {
     private WebApplicationContext context;
 
     private MockMvc mvc;
+
 
     // 매번 테스트가 시작되기 전에 MockMvc 인스턴스를 생성한다.
     @BeforeEach
@@ -68,20 +71,19 @@ public class PostsApiControllerTest {
         //given
         String title = "title";
         String content = "content";
-        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
-                .title(title)
-                .content(content)
-                .classfication("html")
-                .build();
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "hello.txt", MediaType.TEXT_PLAIN_VALUE, "hello, world!".getBytes()
+        );
 
         String url = "http://localhost:"+port+"/api/v1/posts";
 
         //when
-        // 생성된 MockMvc를 통해 API를 테스트한다. 본문 영역은 문자열로 표현하기 위해 ObjectMapper를 통해 문자열 JSON으로 변환한다.
-        mvc.perform(post(url)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(new ObjectMapper().writeValueAsString(requestDto)))
-                .andExpect(status().isOk());
+        // 생성된 MockMvc를 통해 API를 테스트한다.
+        mvc.perform(multipart(url).file(file)
+                .param("title", title)
+                .param("content", content)
+                .param("classification", "html")
+        ).andDo(print()).andExpect(status().is3xxRedirection());
 
         //then
         List<Posts> all = postsRepository.findAll();
@@ -102,22 +104,18 @@ public class PostsApiControllerTest {
         Long updateId = savedPosts.getId();
         String expectedTitle = "title2";
         String expectedContent = "content2";
-
-        PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
-                .title(expectedTitle)
-                .content(expectedContent)
-                .classification("css")
-                .build();
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "hello.txt", MediaType.TEXT_PLAIN_VALUE, "hello, world!".getBytes()
+        );
 
         String url = "http://localhost:"+port+"/api/v1/posts/"+updateId;
 
-        HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
-
         //when
-        mvc.perform(put(url)
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(new ObjectMapper().writeValueAsString(requestDto)))
-                .andExpect(status().isOk());
+        mvc.perform(multipart(url).file(file)
+                .param("title", expectedTitle)
+                .param("content", expectedContent)
+                .param("classification", "css")
+        ).andDo(print()).andExpect(status().is3xxRedirection());
 
         //then
         List<Posts> all = postsRepository.findAll();
