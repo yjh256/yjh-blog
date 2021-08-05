@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>YJH의 Blog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/blog.css">
+    <link rel="stylesheet" href="/css/comment.css">
+</head>
+<body>
+<div class="header">
+    <a href="/" class="head-image"><img src="/css/head.jpg" alt="BLOG"></a>
+    <ul class="nav index-nav">
+        <li class="header-list"><a class="classification" href="/board/html">html</a></li>
+        <li class="header-list"><a class="classification" href="/board/css">css</a></li>
+        <li class="header-list"><a class="classification" href="/board/javascript">javascript</a></li>
+        <li class="header-list"><a class="classification" href="/board/java">java</a></li>
+        <li class="header-list"><a class="classification" href="/board/springboot">springboot</a></li>
+        <li class="header-list"><a class="classification" href="/board/database">데이터베이스</a></li>
+        <li class="header-list"><a class="classification" href="/board/OS">운영체제</a></li>
+        <li class="header-list"><a class="classification" href="/board/network">네트워크</a></li>
+    </ul>
+    <!-- 로그인 기능 영역-->
+    <div class="login-btn-area" id="login">
+        <a href="/logging-in" class="btn btn-success active" role="button">Login</a>
+    </div>
+</div>
+<br>
+    <h2 id="login-header">로그인</h2>
+    <div class="login-buttons">
+        <ul class="login-buttons-list">
+            <li>
+                <a href="/oauth2/authorization/google"
+                   class="login-button btn btn-success active" role="button">Google Login</a>
+            </li>
+            <li>
+                <a href="/oauth2/authorization/naver"
+                   class="login-button btn btn-secondary active" role="button">Naver Login</a>
+            </li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!--index.js 추가-->
+    <script src="/js/app/index.js"></script>
+    <script src="/js/app/comment.js"></script>
+</body>
+</html>
+

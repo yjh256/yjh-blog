@@ -10,26 +10,9 @@
     <link rel="stylesheet" href="/css/comment.css">
 </head>
 <body>
-<h1 id="home_title"><a href="/">블로그</a></h1>
-    <div class="col-md-12">
-        <!-- 로그인 기능 영역-->
-        <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6" id="login">
-                {{#userName}}
-                    <span id="user">{{userName}}</span> 님 환영합니다.
-                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-                {{/userName}}
-                {{^userName}}
-                    <a href="/oauth2/authorization/google"
-                       class="btn btn-success active" role="button">Google Login</a>
-                    <a href="/oauth2/authorization/naver"
-                       class="btn btn-secondary active" role="button">Naver Login</a>
-                {{/userName}}
-            </div>
-        </div>
-        <br>
-        <ul class="nav col-md-12 index-nav">
+    <div class="header">
+        <a href="/" class="head-image"><img src="/css/head.jpg" alt="BLOG"></a>
+        <ul class="nav index-nav">
             <li class="header-list"><a class="classification" href="/board/html">html</a></li>
             <li class="header-list"><a class="classification" href="/board/css">css</a></li>
             <li class="header-list"><a class="classification" href="/board/javascript">javascript</a></li>
@@ -39,3 +22,17 @@
             <li class="header-list"><a class="classification" href="/board/OS">운영체제</a></li>
             <li class="header-list"><a class="classification" href="/board/network">네트워크</a></li>
         </ul>
+        <!-- 로그인 기능 영역-->
+        <div class="login-btn-area" id="login">
+            {{#userName}}
+                <span id="user">{{userName}}</span> 님
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            {{^userName}}
+                <a href="/logging-in" class="btn btn-success active" role="button">Login</a>
+            {{/userName}}
+        </div>
+    </div>
+    <div class="middle-image"></div>
+        <br>
+

@@ -54,6 +54,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/logging-in")
+    public String login(Model model) {
+        return "login";
+    }
+
     @GetMapping("/board/{classification}")
     public String classification(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification) { // Model은 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
         model.addAttribute("classification", classification);
