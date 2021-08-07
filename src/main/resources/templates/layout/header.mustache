@@ -1,38 +1,98 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    <title>YJH의 Blog</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/blog.css">
-    <link rel="stylesheet" href="/css/comment.css">
-</head>
-<body>
-    <div class="header">
-        <a href="/" class="head-image"><img src="/css/head.jpg" alt="BLOG"></a>
-        <ul class="nav index-nav">
-            <li class="header-list"><a class="classification" href="/board/html">html</a></li>
-            <li class="header-list"><a class="classification" href="/board/css">css</a></li>
-            <li class="header-list"><a class="classification" href="/board/javascript">javascript</a></li>
-            <li class="header-list"><a class="classification" href="/board/java">java</a></li>
-            <li class="header-list"><a class="classification" href="/board/springboot">springboot</a></li>
-            <li class="header-list"><a class="classification" href="/board/database">데이터베이스</a></li>
-            <li class="header-list"><a class="classification" href="/board/OS">운영체제</a></li>
-            <li class="header-list"><a class="classification" href="/board/network">네트워크</a></li>
-        </ul>
-        <!-- 로그인 기능 영역-->
-        <div class="login-btn-area" id="login">
-            {{#userName}}
-                <span id="user">{{userName}}</span> 님
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}
-                <a href="/logging-in" class="btn btn-success active" role="button">Login</a>
-            {{/userName}}
-        </div>
-    </div>
-    <div class="middle-image"></div>
-        <br>
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="YJH256-BLOG">
+        <meta name="author" content="YJH256">
 
+        <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+        <meta property="og:site_name" content="Y-LOG" /> <!-- website name -->
+        <meta property="og:site" content="" /> <!-- website link -->
+        <meta property="og:title" content="Y-LOG"/> <!-- title shown in the actual shared post -->
+        <meta property="og:description" content="YJH256's blog" /> <!-- description shown in the actual shared post -->
+        <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+        <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+        <meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+
+        <!-- Webpage Title -->
+        <title>Y-BLOG</title>
+
+        <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/fontawesome-all.min.css" rel="stylesheet">
+        <link href="/css/swiper.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/blog.css">
+        <link rel="stylesheet" href="/css/comment.css">
+
+        <!-- Favicon  -->
+        <link rel="icon" href="/images/favicon.png">
+    </head>
+    <body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
+        <div class="container">
+
+            <!-- Image Logo -->
+            <a class="navbar-brand logo-image" href="/"><img src="/images/head.jpg" alt="BLOG"></a>
+
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <!-- <a class="navbar-brand logo-text" href="index.html">Yavin</a> -->
+
+            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ms-auto navbar-nav-scroll">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#header">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#abouts">Abouts</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">CS 기초</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="/board/network">네트워크</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="/board/OS">운영체제</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="/board/database">데이터베이스</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">개발 지식</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                            <li><a class="dropdown-item" href="/board/html">html</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="/board/css">css</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="/board/javascript">javascript</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="/board/java">java</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="/board/springboot">springboot</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <span class="nav-item">
+                    {{#userName}}
+                        <span>{{userName}}</span> 님
+                        <a href="/logout" class="btn-outline-sm">Logout</a>
+                    {{/userName}}
+                    {{^userName}}
+                        <a class="btn-outline-sm" href="/logging-in">Login</a>
+                    {{/userName}}
+
+                </span>
+            </div> <!-- end of navbar-collapse -->
+        </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->

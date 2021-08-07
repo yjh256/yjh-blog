@@ -1,0 +1,121 @@
+{{>layout/header}}
+<!-- 목록 출력 영역-->
+<div class="board">
+    <h1 class="board-head">{{classification}}</h1>
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead=strong">
+        <tr>
+            <th class="post-col-1">#</th>
+            <th class="post-col-2">제목</th>
+            <th class="post-col-3">분류</th>
+            <th class="post-col-4">등록일</th>
+            <th class="post-col-5">조회수</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#posts}}
+            <tr>
+                <td class="post-col-1">{{id}}</td>
+                <td class="post-col-2"><a href="/posts/{{id}}">{{title}}</a></td>
+                <td class="post-col-3">{{classification}}</td>
+                <td class="post-col-4 modifiedDate">{{modifiedDate}}</td>
+                <td class="post-col-5">{{view}}</td>
+            </tr>
+        {{/posts}}
+        </tbody>
+    </table>
+    {{#classification}}
+        <nav aria-label="Page navigation">
+            <ul class="pagination center">
+                <li class="page-item">
+                    <a class="page-link" href="/board/{{classification}}/?page=1">&lt;&lt;</a>
+                </li>
+                {{#posts.first}}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="/board/{{classification}}/?page={{posts.number}}">&lt;</a>
+                    </li>
+                {{/posts.first}}
+                {{^posts.first}}
+                    <li class="page-item">
+                        <a class="page-link" href="/board/{{classification}}/?page={{posts.number}}">&lt;</a>
+                    </li>
+                {{/posts.first}}
+
+                {{#numbers}}
+                    <li class="page-item page-numbers" >
+                        <a class="page-link" href="/board/{{classification}}/?page={{.}}">{{.}}</a>
+                    </li>
+                {{/numbers}}
+                {{#posts.last}}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="/board/{{classification}}/?page={{next}}">&gt;</a>
+                    </li>
+                {{/posts.last}}
+                {{^posts.last}}
+                    <li class="page-item">
+                        <a class="page-link" href="/board/{{classification}}/?page={{next}}">&gt;</a>
+                    </li>
+                {{/posts.last}}
+                <li class="page-item">
+                    <a class="page-link" href="/board/{{classification}}/?page={{posts.totalPages}}">&gt;&gt;</a>
+                </li>
+                <a href="/posts/save" role="button" class="btn btn-primary index-post-save-button">글 등록</a>
+            </ul>
+            <form action="/search/{{classification}}" method="GET">
+                <div class="search center">
+                    <input name="keyword" type="text" placeholder="검색어를 입력해주세요.">
+                    <button class="btn btn-info">검색하기</button>
+                </div>
+            </form>
+        </nav>
+    {{/classification}}
+    {{^classification}}
+        <nav aria-label="Page navigation">
+            <ul class="pagination center">
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">&lt;&lt;</a>
+                </li>
+                {{#posts.first}}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="?page={{posts.number}}">&lt;</a>
+                    </li>
+                {{/posts.first}}
+                {{^posts.first}}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{posts.number}}">&lt;</a>
+                    </li>
+                {{/posts.first}}
+
+                {{#numbers}}
+                    <li class="page-item page-numbers" >
+                        <a class="page-link" href="?page={{.}}">{{.}}</a>
+                    </li>
+                {{/numbers}}
+                {{#posts.last}}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="?page={{next}}">&gt;</a>
+                    </li>
+                {{/posts.last}}
+                {{^posts.last}}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{next}}">&gt;</a>
+                    </li>
+                {{/posts.last}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{posts.totalPages}}">&gt;&gt;</a>
+                </li>
+                <a href="/posts/save" role="button" class="btn btn-primary index-post-save-button">글 등록</a>
+            </ul>
+
+            <form action="/search" method="GET">
+                <div class="search center">
+                    <input name="keyword" type="text" placeholder="검색어를 입력해주세요.">
+                    <button class="btn btn-info">검색하기</button>
+                </div>
+            </form>
+        </nav>
+    {{/classification}}
+
+</div>
+
+{{>layout/footer}}

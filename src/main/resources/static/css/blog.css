@@ -1,7 +1,12 @@
 body {
     overflow: auto;
 }
-
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 @media screen{
     #home_title {
         margin:30px 20px;
@@ -43,6 +48,7 @@ body {
     }
     .head-image img {
         object-fit: cover;
+        max-width: 90%;
     }
     .header-list {
         list-style:none;
@@ -107,6 +113,7 @@ body {
     .post-save-header {
         text-align: center;
         margin: 30px;
+        margin-top: 80px;
     }
     .post-save-form {
         margin-left: 25%;
@@ -117,10 +124,11 @@ body {
     }
     .index-post-save-button {
         position: absolute;
-        right: 20px;
+        right: 10%;
     }
     .posts-content {
         margin: 0 15%;
+        margin-top: 80px;
         max-width: 70%;
     }
     .login-btn-area {
@@ -155,6 +163,17 @@ body {
         width:100%;
         height: 300px;
         box-shadow: 0 0 8px 8px white inset;
+    }
+    .board {
+        margin: 100px 10%;
+    }
+    .board-head {
+        margin: 50px;
+        text-align: center;
+    }
+    .page-images {
+        border-radius: 20px;
+        box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.8);
     }
 }
 
