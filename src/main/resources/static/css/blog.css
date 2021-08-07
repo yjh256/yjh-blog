@@ -149,6 +149,7 @@ body {
     }
     #login-header {
         text-align: center;
+        margin: 70px;
         padding: 50px;
     }
     .login-button {
