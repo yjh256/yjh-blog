@@ -113,7 +113,7 @@ body {
     .post-save-header {
         text-align: center;
         margin: 30px;
-        margin-top: 80px;
+        margin-top: 110px;
     }
     .post-save-form {
         margin-left: 25%;
@@ -143,6 +143,7 @@ body {
     .login-buttons-list {
         list-style: none;
         padding: 0;
+        margin-bottom: 100px;
     }
     .login-buttons-list li {
         margin: 10px;

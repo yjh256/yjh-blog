@@ -116,12 +116,12 @@ h6 {
 
 a {
 	color: #6c717b;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 a:hover {
 	color: #6c717b;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 .no-line {
