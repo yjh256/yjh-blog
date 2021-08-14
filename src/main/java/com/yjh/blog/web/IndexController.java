@@ -162,7 +162,7 @@ public class IndexController {
         }
         postsService.save(requestDto);
 
-        return "redirect:/";
+        return "redirect:/board/"+classification;
     }
 
     @PostMapping("/api/v1/posts/{id}")
@@ -181,7 +181,7 @@ public class IndexController {
             requestDto.setFileId(fileId);
         }
         postsService.update(id, requestDto);
-        return "redirect:/";
+        return "redirect:/board/"+classification;
     }
 
     private Long saveFile(MultipartFile files) {

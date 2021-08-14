@@ -4,7 +4,7 @@
 
 <div class="col-md-12">
     <div class="col-md-6 post-save-form">
-        <form action="/api/v1/posts" method="post" enctype="multipart/form-data">
+        <form action="/api/v1/posts" method="post" enctype="multipart/form-data" onsubmit="return confirm('이 글을 등록하시겠습니까?');">
             <div class="form-group post-save-title">
                 <label for="title">제목</label>
                 <input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요">

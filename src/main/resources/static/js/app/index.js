@@ -7,18 +7,20 @@ var main = {
     },
     delete : function() {
         var id = $('#id').val();
-
-        $.ajax({
-            type: 'DELETE',
-            url: '/api/v1/posts/'+id,
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8'
-        }).done(function() {
-            alert('글이 삭제되었습니다.');
-            window.location.href = '/';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
+        message = "이 글을 정말 삭제하시겠습니까?";
+        if (confirm(message) != 0) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/v1/posts/'+id,
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8'
+                }).done(function() {
+                alert('글이 삭제되었습니다.');
+                    window.location.href = '/';
+                }).fail(function (error) {
+                    alert(JSON.stringify(error));
+                });
+        }
     }
 };
 

@@ -4,7 +4,7 @@
 
 <div class="col-md-12">
     <div class="col-md-6 post-save-form">
-        <form action="/api/v1/posts/{{post.id}}" method="post" enctype="multipart/form-data">
+        <form action="/api/v1/posts/{{post.id}}" method="post" enctype="multipart/form-data" onsubmit="return confirm('이 글을 수정하시겠습니까?');">
             <div class="form-group">
                 <input type="text" class="form-control" id="id" value="{{post.id}}" hidden>
                 <!-- readonly는 Input 태그에 읽기 기능만 허용하는 속성이다. -->
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="post-save-buttons">
-                <a href="/" role="button" class="btn btn-secondary">취소</a>
+                <a href="/board/{{post.classification}}" role="button" class="btn btn-secondary">취소</a>
                 <input type="submit" class="btn btn-primary" role="button" id="btn-update" value="수정 완료">
                 <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
             </div>
