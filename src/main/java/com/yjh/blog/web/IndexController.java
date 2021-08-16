@@ -72,19 +72,6 @@ public class IndexController {
         return "board";
     }
 
-    @GetMapping("/search")
-    public String search(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @RequestParam(value = "keyword") String keyword) {
-        model.addAttribute("classification", "");
-        model.addAttribute("posts", postsService.findByTitle(pageable, keyword));
-        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("numbers", postsService.getPageSequence("", pageable));
-        if (user != null) {
-            model.addAttribute("userName", user.getName());
-        }
-        return "index";
-    }
-
     @GetMapping("/search/{classification}")
     public String search(Model model, @LoginUser SessionUser user, @PageableDefault Pageable pageable, @PathVariable String classification, @RequestParam(value = "keyword") String keyword) {
         model.addAttribute("classification", classification);
@@ -95,7 +82,7 @@ public class IndexController {
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
-        return "index";
+        return "board";
     }
 
     @GetMapping("/posts/{id}")
