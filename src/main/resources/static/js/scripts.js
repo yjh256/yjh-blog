@@ -33,31 +33,62 @@ document.querySelector(".navbar-toggler").addEventListener("click", () => {
 });
 
 // Hover on desktop
-function toggleDropdown(e) {
-	const _d = e.target.closest(".dropdown");
-	let _m = document.querySelector(".dropdown-menu", _d);
+var toggleDropdown01 = (e) => {
+	const _d = e.target.closest(".dropdown01");
+	let _m = document.querySelector(".dropdown01 .dropdown-menu", _d);
+    setTimeout(
+        function () {
+        const shouldOpen = _d.matches(":hover");
+        _m.classList.toggle("show", shouldOpen);
+        _d.classList.toggle("show", shouldOpen);
 
-	setTimeout(
-		function () {
-		const shouldOpen = _d.matches(":hover");
-		_m.classList.toggle("show", shouldOpen);
-		_d.classList.toggle("show", shouldOpen);
+        _d.setAttribute("aria-expanded", shouldOpen);
+        },
+        e.type === "mouseleave" ? 300 : 0
+    );
+}
 
-		_d.setAttribute("aria-expanded", shouldOpen);
-		},
-		e.type === "mouseleave" ? 300 : 0
-	);
+var toggleDropdown02 = (e) => {
+    const _d = e.target.closest(".dropdown02");
+    let _m = document.querySelector(".dropdown02 .dropdown-menu", _d);
+    setTimeout(
+        function () {
+        const shouldOpen = _d.matches(":hover");
+        _m.classList.toggle("show", shouldOpen);
+        _d.classList.toggle("show", shouldOpen);
+
+        _d.setAttribute("aria-expanded", shouldOpen);
+        },
+        e.type === "mouseleave" ? 300 : 0
+    );
+}
+
+var toggleDropdown = (_d) => {
+    let _m = document.querySelector(".dropdown-menu", _d);
+    setTimeout(
+    	function () {
+    	const shouldOpen = _d.matches(":hover");
+    	_m.classList.toggle("show", shouldOpen);
+    	_d.classList.toggle("show", shouldOpen);
+
+    	_d.setAttribute("aria-expanded", shouldOpen);
+    	},
+    	e.type === "mouseleave" ? 300 : 0
+    );
 }
 
 // On hover
-const dropdownCheck = document.querySelector('.dropdown');
+const dropdownCheck = document.querySelector('.dropdown01');
 
 if (dropdownCheck !== null) { 
-	document.querySelector(".dropdown").addEventListener("mouseleave", toggleDropdown);
-	document.querySelector(".dropdown").addEventListener("mouseover", toggleDropdown);
+	document.querySelector(".dropdown01").addEventListener("mouseleave", toggleDropdown01);
+	document.querySelector(".dropdown01").addEventListener("mouseover", toggleDropdown01);
+	document.querySelector(".dropdown02").addEventListener("mouseleave", toggleDropdown02);
+    document.querySelector(".dropdown02").addEventListener("mouseover", toggleDropdown02);
 
 	// On click
-	document.querySelector(".dropdown").addEventListener("click", (e) => {
+	document.querySelector(".dropdown01").addEventListener("click", (e) => {
+	    console.log(e.target);
 		const _d = e.target.closest(".dropdown");
 		let _m = document.querySelector(".dropdown-menu", _d);
 		if (_d.classList.contains("show")) {
@@ -102,4 +133,4 @@ function scrollFunctionBTT() {
 function topFunction() {
 	document.body.scrollTop = 0; // for Safari
 	document.documentElement.scrollTop = 0; // for Chrome, Firefox, IE and Opera
-}
+};
