@@ -50,6 +50,12 @@ public class IndexController {
         model.addAttribute("numbers", postsService.getPageSequence("", pageable));
         if (user != null) {
             model.addAttribute("userName", user.getName());
+            String role = user.getRole();
+            if (role == "ROLE_USER") {
+                model.addAttribute("RoleUSER", true);
+            } else {
+                model.addAttribute("RoleUSER", false);
+            }
         }
         return "index";
     }
@@ -68,7 +74,14 @@ public class IndexController {
         model.addAttribute("numbers", postsService.getPageSequence(classification, pageable));
         if (user != null) {
             model.addAttribute("userName", user.getName());
+            String role = user.getRole();
+            if (role.equals("ROLE_USER")) {
+                model.addAttribute("RoleUSER", true);
+            } else {
+                model.addAttribute("RoleUSER", false);
+            }
         }
+
         return "board";
     }
 
@@ -99,6 +112,12 @@ public class IndexController {
             User user2 = userRepository.findByEmail(user.getEmail()).get();
             model.addAttribute("userId", user2.getId());
             model.addAttribute("userName", user.getName());
+            String role = user.getRole();
+            if (role.equals("ROLE_USER")) {
+                model.addAttribute("RoleUSER", true);
+            } else {
+                model.addAttribute("RoleUSER", false);
+            }
         }
         return "post";
     }

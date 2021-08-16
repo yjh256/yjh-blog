@@ -12,7 +12,9 @@
         {{/post.fileId}}
     </div>
     <div class = "post-update-and-back">
+        {{#RoleUSER}}
         <a href="/posts/update/{{id}}" role="button" class="btn btn-primary">수정</a>
+        {{/RoleUSER}}
         <a href="/board/{{post.classification}}" class="btn btn-secondary">뒤로 가기</a>
     </div>
     <h3>Comments</h3>

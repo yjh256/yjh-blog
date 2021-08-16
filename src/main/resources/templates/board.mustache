@@ -59,7 +59,9 @@
                 <li class="page-item">
                     <a class="page-link" href="/board/{{classification}}/?page={{posts.totalPages}}">&gt;&gt;</a>
                 </li>
+                {{#RoleUSER}}
                 <a href="/posts/save" role="button" class="btn btn-primary index-post-save-button">글 등록</a>
+                {{/RoleUSER}}
             </ul>
             <form action="/search/{{classification}}" method="GET">
                 <div class="search center">
