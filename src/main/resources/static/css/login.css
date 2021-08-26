@@ -1,0 +1,38 @@
+@media screen {
+    .login-btn-area {
+        margin: auto;
+        padding-right: 10px;
+        max-width: 15%;
+    }
+    .login-buttons {
+        text-align: center;
+        grid-template-rows: repeat(2, 40px);
+    }
+    .login-buttons-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 100px;
+    }
+    .login-buttons-list li {
+        margin: 10px;
+    }
+    #login-header {
+        text-align: center;
+        margin: 70px;
+        padding: 50px;
+    }
+    .login-button {
+        display: block;
+        width: 200px;
+        margin: auto;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .login-btn-area {
+        margin-right: 40px;
+        padding: 10px;
+        max-width: fit-content;
+    }
+}

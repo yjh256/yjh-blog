@@ -1,13 +1,14 @@
-var main = {
+const comments = {
+    dates : [],
     init : function () {
-        var _this = this;
+        const _this = this;
         $('#btn-comment-save').on('click', function() {
             _this.save();
         });
-        var updateButtons = document.querySelectorAll('.btn-comment-update');
+        const updateButtons = document.querySelectorAll('.btn-comment-update');
         updateButtons.forEach(function(item) {
             item.addEventListener('click', function() {
-                var form = this.closest('form');
+                const form = this.closest('form');
                 _this.update(form);
             });
         });
@@ -17,16 +18,18 @@ var main = {
         $('#btn-comment-delete').on('click', function() {
             _this.delete();
         });
+        _this.onlyForAuthor();
+        _this.dateTrim();
     },
     save : function() {
-        var data = {
+        const data = {
             content: $('#save-comment-content').val(),
             created_by: $('#save-comment-author').val(),
             post_id: $('#post_id').val(),
             user_id: $('#user_id').val()
         };
 
-        var post_id = $('#post_id').val();
+        const post_id = $('#post_id').val();
 
         $.ajax({
             type: 'POST',
@@ -42,15 +45,15 @@ var main = {
         });
     },
     update : function(form) {
-        var data = {
+        const data = {
             content: form.querySelector('#comment-content').value,
             created_by: $('#comment-author').val(),
             post_id: $('#post_id').val(),
             user_id: $('#user_id').val()
         };
 
-        var post_id = $('#post_id').val();
-        var comment_id = $('#comment_id').val();
+        const post_id = $('#post_id').val();
+        const comment_id = $('#comment_id').val();
 
         $.ajax({
             type: 'PUT',
@@ -66,8 +69,8 @@ var main = {
         });
     },
     delete : function() {
-        var post_id = $('#post_id').val();
-        var comment_id = $('#comment_id').val();
+        const post_id = $('#post_id').val();
+        const comment_id = $('#comment_id').val();
 
         $.ajax({
             type: 'DELETE',
@@ -80,18 +83,23 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+    },
+    onlyForAuthor : function() {
+        const author = $("#save-comment-author").val();
+        $(".only-for-author").filter(function() {
+            const created_by = $(this).siblings('.commentsAuthor').text();
+            return created_by == author;
+        }).attr("hidden", false);
+    },
+    dateTrim : function() {
+        $(".comments-modifiedDate").each((index, element) => {
+            let text = element.innerText;
+            element.innerText = text.replace('T', ' ').slice(0, 19);
+        });
     }
 };
 
-main.init();
+comments.init();
 
-var author = $("#save-comment-author").val();
-$(".only-for-author").filter(function() {
-    var created_by = $(this).siblings('.commentsAuthor').text();
-    return created_by == author;
-}).attr("hidden", false);
 
-$(".comments-modifiedDate").each((index, element) => {
-    var text = element.innerText;
-    element.innerText = text.replace('T', ' ');
-});
+

@@ -28,3 +28,7 @@
     flex-grow: 1;
     text-align:right;
 }
+
+.comment-update-button {
+    text-align: right;
+}
